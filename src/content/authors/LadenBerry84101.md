@@ -8,4 +8,4 @@ social:
   instagram: https://www.instagram.com/
 ---
 
-Helpfull Content Creator from the Turkish Empire! Learning the Power fo the Wand!
+Moderator of our Discord & Helpfull Content Creator from the Turkish Empire! Learning the Power fo the Wand!

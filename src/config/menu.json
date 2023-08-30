@@ -5,7 +5,7 @@
       "url": "/"
     },
     {
-      "name": "About",
+      "name": "Over",
       "url": "/about"
     },
     {
@@ -13,12 +13,12 @@
       "url": "/contact"
     },
     {
-      "name": "Pages",
+      "name": "Paginas",
       "url": "",
       "hasChildren": true,
       "children": [
         {
-          "name": "Authors",
+          "name": "Staf",
           "url": "/authors"
         },
         {
@@ -42,7 +42,7 @@
   ],
   "footer": [
     {
-      "name": "About",
+      "name": "Over",
       "url": "/about"
     },
     {
