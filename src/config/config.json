@@ -1,14 +1,14 @@
 {
   "site": {
-    "title": "Bookworm Light Astro | Blog Template",
-    "base_url": "https://bookworm-light-astro.vercel.app",
+    "title": "HighStreet SMP | Leerdam",
+    "base_url": "https://highstreet.fun/",
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/images/favicon.png",
     "logo": "/images/logo.png",
     "logo_width": "200",
-    "logo_height": "34",
-    "logo_text": "Bookworm Light"
+    "logo_height": "54",
+    "logo_text": "HighStreet SMP"
   },
 
   "settings": {
@@ -17,9 +17,9 @@
   },
 
   "metadata": {
-    "meta_author": "Themefisher",
+    "meta_author": "EzzyHarmless777",
     "meta_image": "/images/og-image.png",
-    "meta_description": "Bookworm Light Astro Blog Template"
+    "meta_description": "Welcome to HighStreet SMP Website. Home of The Leerdam MineCraft SMP Server and Leerdam in MineCraft Project."
   },
 
   "params": {
@@ -28,8 +28,8 @@
   },
 
   "contactinfo": {
-    "address": "355 S Grand Ave <br/> Los Angeles, CA 90071",
-    "email": "info@bookworm.org",
-    "phone": "+800 567 1234"
+    "address": "Hoogstraat 48B<br/> Leerdam, 4141bc",
+    "email": "info@highstreet.fun",
+    "phone": "+316 285 86 335"
   }
 }

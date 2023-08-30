@@ -1,0 +1,11 @@
+---
+title: RiskiestHare42
+image: https://mc-heads.net/head/RiskiestHare42.png
+description: this is meta description
+social:
+  facebook: https://www.facebook.com/
+  twitter: https://www.twitter.com/
+  instagram: https://www.instagram.com/
+---
+
+Owner of Sacred the HighStreet SMP Seed. Original Dreamer of the Project.
