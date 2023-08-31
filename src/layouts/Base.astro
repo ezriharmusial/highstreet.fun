@@ -34,6 +34,7 @@ const { title, meta_title, description, image, noindex, canonical } =
     <!-- theme meta -->
     <meta name="theme-name" content="bookworm-light-astro" />
     <meta name="msapplication-TileColor" content="#000000" />
+    <link rel="preload" as="image" href={image ? image : config.metadata.meta_image}>
     <meta
       name="theme-color"
       media="(prefers-color-scheme: light)"
@@ -125,7 +126,7 @@ const { title, meta_title, description, image, noindex, canonical } =
     <!-- og-image -->
     <meta
       property="og:image"
-      content={`${config.site.base_url}${
+      content={`${image?.startsWith('http') ? "" : config.site.base_url}${
         image ? image : config.metadata.meta_image
       }`}
     />
@@ -133,7 +134,7 @@ const { title, meta_title, description, image, noindex, canonical } =
     <!-- twitter-image -->
     <meta
       name="twitter:image"
-      content={`${config.site.base_url}${
+      content={`${image?.startsWith('http') ? "" : config.site.base_url}${
         image ? image : config.metadata.meta_image
       }`}
     />
@@ -141,9 +142,9 @@ const { title, meta_title, description, image, noindex, canonical } =
   </head>
   <body>
     	<!-- SEO section -->
-      <link itemprop="thumbnailUrl" href={image ? image : config.metadata.meta_image}>
+      <link itemprop="thumbnailUrl" href={`${image?.startsWith('http') ? "" : config.site.base_url}${image ? image : config.metadata.meta_image}`}>
       <span class="hidden" itemprop="thumbnail" itemscope itemtype="http://schema.org/ImageObject">
-        <link itemprop="url" href={image ? image : config.metadata.meta_image}>
+        <link itemprop="url" href={`${image?.startsWith('http') ? "" : config.site.base_url}${image ? image : config.metadata.meta_image}`}>
       </span>
     <TwSizeIndicator />
     <Header />

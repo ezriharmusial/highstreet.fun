@@ -1,7 +1,7 @@
 ---
 title: Duck King
 image: https://mc-heads.net/head/ladenberry84101.png
-description: this is meta description
+description: A Humble King with Great Potentials
 social:
   facebook: https://www.facebook.com/
   twitter: https://www.twitter.com/

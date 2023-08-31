@@ -1,7 +1,7 @@
 ---
 title: RiskiestHare42
 image: https://mc-heads.net/head/RiskiestHare42.png
-description: this is meta description
+description: Strong as Iron, Worth more than Gold.
 social:
   facebook: https://www.facebook.com/
   twitter: https://www.twitter.com/

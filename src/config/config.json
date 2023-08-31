@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "HighStreet SMP | Leerdam",
-    "base_url": "https://highstreet.fun/",
+    "base_url": "https://highstreet.fun",
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/images/favicon.png",
@@ -18,8 +18,8 @@
 
   "metadata": {
     "meta_author": "EzzyHarmless777",
-    "meta_image": "/images/og-image.png",
-    "meta_description": "Welcome to HighStreet SMP Website. Home of The Leerdam MineCraft SMP Server and Leerdam in MineCraft Project."
+    "meta_image": "/images/posts/01.jpg",
+    "meta_description": "Join HighStreet SMP @ play.highstreet.fun Home of The Leerdam MineCraft SMP Server and Leerdam in MineCraft Project."
   },
 
   "params": {
