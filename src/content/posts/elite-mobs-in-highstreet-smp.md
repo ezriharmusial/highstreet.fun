@@ -8,3 +8,5 @@ staff: ["Ezzy Harmless"]
 tags: ["Java", "Bedrock", "Mobs"]
 draft: false
 ---
+
+Is vanilla Minecraft op Hardcore nog te Makkelijk voor jou?! Speel dan tegen onze EliteMobs, alleen of in Teams.
