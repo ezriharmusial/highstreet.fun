@@ -11,9 +11,9 @@ import { humanize,slugify } from "@lib/utils/textConverter";
 import { BiCalendarEdit,BiCategoryAlt } from "react-icons/bi/index.js";
 
 export async function getStaticPaths() {
-  const authors = await getSinglePage("authors");
+  const staff = await getSinglePage("staff");
 
-  const paths = authors.map((author) => ({
+  const paths = staff.map((author) => ({
     params: {
       single: author.slug,
     },
@@ -29,7 +29,7 @@ const { title, meta_title, description, image } = author.data;
 const posts = await getSinglePage("posts");
 const sortPostsByDate = sortByDate(posts);
 const currentPosts = sortPostsByDate.filter((post) => {
-  return post.data.authors.map((author: string) => slugify(author)).includes(slugify(title))
+  return post.data.staff.map((author: string) => slugify(author)).includes(slugify(title))
 });
 ---
 

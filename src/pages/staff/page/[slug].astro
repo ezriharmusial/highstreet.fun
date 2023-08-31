@@ -1,6 +1,6 @@
 ---
 import config from "@config/config.json";
-import Authors from "@layouts/Authors.astro";
+import Staff from "@layouts/Staff.astro";
 import Base from "@layouts/Base.astro";
 import Pagination from "@layouts/components/Pagination.astro";
 import { getSinglePage } from "@lib/contentParser.astro";
@@ -8,8 +8,8 @@ import { sortByDate } from "@lib/utils/sortFunctions";
 import { markdownify } from "@lib/utils/textConverter";
 
 export async function getStaticPaths() {
-  const authors = await getSinglePage("authors");
-  const totalPages = Math.ceil(authors.length / config.settings.pagination);
+  const staff = await getSinglePage("staff");
+  const totalPages = Math.ceil(staff.length / config.settings.pagination);
   const paths = [];
 
   for (let i = 1; i < totalPages; i++) {
@@ -23,22 +23,22 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-const authors = await getSinglePage("authors");
-const sortedPosts = sortByDate(authors);
-const totalPages = Math.ceil(authors.length / config.settings.pagination);
+const staff = await getSinglePage("staff");
+const sortedPosts = sortByDate(staff);
+const totalPages = Math.ceil(staff.length / config.settings.pagination);
 const currentPage = slug && !isNaN(Number(slug)) ? Number(slug) : 1;
 const indexOfLastPost = currentPage * config.settings.pagination;
 const indexOfFirstPost = indexOfLastPost - config.settings.pagination;
 const currentPosts = sortedPosts.slice(indexOfFirstPost, indexOfLastPost);
 ---
 
-<Base title={"Authors"}>
+<Base title={"Staff"}>
   <section class="section">
     <div class="container text-center">
-      <h1 set:text={markdownify("Authors")} class="page-heading h2" />
-      <Authors authors={currentPosts} />
+      <h1 set:text={markdownify("Staff")} class="page-heading h2" />
+      <Staff staff={currentPosts} />
       <Pagination
-        section={"authors"}
+        section={"staff"}
         currentPage={currentPage}
         totalPages={totalPages}
       />

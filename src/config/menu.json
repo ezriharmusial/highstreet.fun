@@ -19,7 +19,7 @@
       "children": [
         {
           "name": "Staf",
-          "url": "/authors"
+          "url": "/staff"
         },
         {
           "name": "Categories",
@@ -28,14 +28,6 @@
         {
           "name": "Tags",
           "url": "/tags"
-        },
-        {
-          "name": "Elements",
-          "url": "/elements"
-        },
-        {
-          "name": "Privacy Policy",
-          "url": "/privacy-policy"
         }
       ]
     }

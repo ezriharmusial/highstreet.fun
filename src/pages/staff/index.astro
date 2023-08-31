@@ -1,15 +1,15 @@
 ---
 import config from "@config/config.json";
-import Authors from "@layouts/Authors.astro";
+import Staff from "@layouts/Staff.astro";
 import Base from "@layouts/Base.astro";
 import Pagination from "@layouts/components/Pagination.astro";
 import { getSinglePage } from "@lib/contentParser.astro";
 import { sortByDate } from "@lib/utils/sortFunctions";
 import { markdownify } from "@lib/utils/textConverter";
 
-const authors = await getSinglePage("authors");
-const sortedPosts = sortByDate(authors);
-const totalPages = Math.ceil(authors.length / config.settings.pagination);
+const staff = await getSinglePage("staff");
+const sortedPosts = sortByDate(staff);
+const totalPages = Math.ceil(staff.length / config.settings.pagination);
 const currentPosts = sortedPosts.slice(0, config.settings.pagination);
 ---
 
@@ -17,8 +17,8 @@ const currentPosts = sortedPosts.slice(0, config.settings.pagination);
   <section class="section">
     <div class="container text-center">
       <h1 set:text={markdownify("Staff: Owner, Moderator, Moderators, VIPs and Developers")} class="page-heading h2" />
-      <Authors authors={currentPosts} />
-      <Pagination section={"authors"} currentPage={1} totalPages={totalPages} />
+      <Staff staff={currentPosts} />
+      <Pagination section={"staff"} currentPage={1} totalPages={totalPages} />
     </div>
   </section>
 </Base>

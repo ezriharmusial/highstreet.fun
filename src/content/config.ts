@@ -9,7 +9,7 @@ const postsCollection = defineCollection({
     description: z.string().optional(),
     date: z.date().optional(),
     image: z.string().optional(),
-    authors: z.array(z.string()).default(["admin"]),
+    staff: z.array(z.string()).default(["admin"]),
     categories: z.array(z.string()).default(["others"]),
     tags: z.array(z.string()).default(["others"]),
     draft: z.boolean().optional(),
@@ -17,7 +17,7 @@ const postsCollection = defineCollection({
 });
 
 // Author collection schema
-const authorsCollection = defineCollection({
+const staffCollection = defineCollection({
   schema: z.object({
     id: z.string().optional(),
     title: z.string(),
@@ -52,5 +52,5 @@ const pagesCollection = defineCollection({
 export const collections = {
   posts: postsCollection,
   pages: pagesCollection,
-  authors: authorsCollection,
+  staff: staffCollection,
 };

@@ -5,7 +5,7 @@ import { getSinglePage } from "@lib/contentParser.astro";
 import dateFormat from "@lib/utils/dateFormat";
 import { humanize,slugify } from "@lib/utils/textConverter";
 import { BiCalendarEdit,BiCategoryAlt } from "react-icons/bi/index.js";
-const authors = await getSinglePage("authors");
+const staff = await getSinglePage("staff");
 const { summary_length } = config.settings;
 const { className, posts, fluid } = Astro.props;
 ---
@@ -27,15 +27,15 @@ const { className, posts, fluid } = Astro.props;
         )}
         <ul class="mt-6 mb-4 flex flex-wrap items-center text-text">
           <li class="mr-5">
-            {authors
+            {staff
               .filter((author) =>
-                post.data.authors
+                post.data.staff
                   .map((author: string) => slugify(author))
                   .includes(slugify(author.data.title))
               )
               .map((author) => (
                 <a
-                  href={`/authors/${slugify(author.data.title)}`}
+                  href={`/staff/${slugify(author.data.title)}`}
                   class="flex items-center hover:text-primary font-medium"
                 >
                   {author.data.image && (
