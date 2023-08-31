@@ -1,7 +1,7 @@
 ---
 import { Image } from "@astrojs/image/components";
 
-import AuthorSingle from "@layouts/AuthorSingle.astro";
+import StaffSingle from "@layouts/StaffSingle.astro";
 import Base from "@layouts/Base.astro";
 import { getSinglePage } from "@lib/contentParser.astro";
 import dateFormat from "@lib/utils/dateFormat";
@@ -25,7 +25,7 @@ export async function getStaticPaths() {
 const { author } = Astro.props;
 const { title, meta_title, description, image } = author.data;
 
-// Author Posts
+// Staff Posts
 const posts = await getSinglePage("posts");
 const sortPostsByDate = sortByDate(posts);
 const currentPosts = sortPostsByDate.filter((post) => {
@@ -39,7 +39,7 @@ const currentPosts = sortPostsByDate.filter((post) => {
   description={description}
   image={image}
 >
-  <AuthorSingle author={author} />
+  <StaffSingle author={author} />
 
   {currentPosts.length > 0 && (
     <section class="section pt-0">

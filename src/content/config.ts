@@ -16,7 +16,7 @@ const postsCollection = defineCollection({
   }),
 });
 
-// Author collection schema
+// Staff collection schema
 const staffCollection = defineCollection({
   schema: z.object({
     id: z.string().optional(),

@@ -24,9 +24,9 @@ Bookworm Light is a minimal multi-author free Astro blog theme which is perfect 
 ## 🔑Key Features
 
 - 🎨 Highly Customizable (Color, Font, Menu, Social Links, SEO Meta Tags, etc.)
-- 👥 Multi-Author Support
+- 👥 Multi-Staff Support
 - 📚 Staff Page
-- 👤 Author Single Page
+- 👤 Staff Single Page
 - 🔍 Search Functionality with FuseJS
 - 🏷️ Tags and Categories Support
 - 📲 Post Social Share Option
