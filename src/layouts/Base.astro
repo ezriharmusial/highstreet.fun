@@ -140,6 +140,11 @@ const { title, meta_title, description, image, noindex, canonical } =
     <meta name="twitter:card" content="summary_large_image" />
   </head>
   <body>
+    	<!-- SEO section -->
+      <link itemprop="thumbnailUrl" href={image ? image : config.metadata.meta_image}>
+      <span class="hidden" itemprop="thumbnail" itemscope itemtype="http://schema.org/ImageObject">
+        <link itemprop="url" href={image ? image : config.metadata.meta_image}>
+      </span>
     <TwSizeIndicator />
     <Header />
     <main id="main-content" class="min-h-[60vh]">
