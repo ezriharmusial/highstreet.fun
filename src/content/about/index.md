@@ -5,18 +5,19 @@ image: "https://a0.muscache.com/im/pictures/9bb5e11f-b895-494a-bb97-8feb603bc4de
 draft: false
 
 what_i_do:
-  title: "What I Do"
+  title: "Wat Wij Doen"
   items:
-  - title: "Content Writing"
-    description: "Purus eget ipsum elementum venenatis, quis rutrum mi semper nonpurus eget ipsum elementum venenatis."
+  - title: "Maak Plezier"
+    description: "Games spelen hoort een leuke ervaring te zijn. Heb plezier."
 
-  - title: "Photography"
-    description: "Aenean maximus urna magna elementum, quis rutrum mi semper non purus eget ipsum venenatis."
+  - title: "Help elkaar"
+    description: "Onze Games zijn net als het leven niet makkelijk, help elkaar."
 
-  - title: "Web Research"
-    description: "Aenean maximus urna magna elementum venenatis, quis semper non purus eget ipsum venenatis."
+  - title: "Respecteer elkaar"
+    description: "Gedraag je, respecteer elkaars grenzen. Maak Plezier"
 
 ---
+
 Opvallend is dat de Web gedreven Creatieve Media, Entertainment en Games industrie floreert op het Web. Ondanks alle veranderingen in de wereld, groeit onze behoefte naar digitaal vermaak, plezier en expressie. De nieuwste Iphones en Videokaarten gaan voor meer dan 1000 euro nog steeds als hete broodjes over de toonbank. We willen blijkbaar ondanks alles ook gewoon ontspannen naast het werk, school en alle veranderingen in de wereld.
 
 De grootste behoefte van de Jeugdige (en volwassen) MineCraft spelers is een gezamenlijke betrouwbare en toegankelijke Server, die hun Creaties en interacties in de wereld respecteert, bewaakt en bewaard voor de toekomst. Het spel is namelijk oneindig groot en veranderingen in de wereld zijn permanent zichtbaar, zolang de server draait. Veel populaire servers draaien al 10 jaar lang.
