@@ -1,5 +1,5 @@
 ---
-import { Image } from "@astrojs/image/components";
+import { Image } from "astro:assets";
 import Social from "@components/Social.astro";
 import { markdownify } from "@lib/utils/textConverter";
 
@@ -34,6 +34,7 @@ const { Content } = await author.render();
                 height={150}
                 width={150}
                 alt={title}
+                transition:name={"image" + author.slug}
               />
             </div>
           )

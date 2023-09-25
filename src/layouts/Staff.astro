@@ -1,5 +1,5 @@
 ---
-import { Image } from "@astrojs/image/components";
+import { Image } from "astro:assets";
 import { markdownify } from "@lib/utils/textConverter";
 import { BsArrowRightCircle } from "react-icons/bs/index.js";
 const { staff } = Astro.props;
@@ -17,6 +17,7 @@ const { staff } = Astro.props;
               height={150}
               width={150}
               class="mx-auto rounded-lg"
+              transition:name={"image" + author.slug}
             />
           </div>
         )}

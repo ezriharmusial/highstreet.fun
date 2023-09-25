@@ -1,5 +1,5 @@
 ---
-import { Image } from "@astrojs/image/components";
+import { Image } from "astro:assets";
 import config from "@config/config.json";
 import { getSinglePage } from "@lib/contentParser.astro";
 import dateFormat from "@lib/utils/dateFormat";
@@ -22,6 +22,7 @@ const { className, posts, fluid } = Astro.props;
               alt={post.data.title}
               width={i === 0 ? 925 : 445}
               height={i === 0 ? 475 : 230}
+              transition:name={"image" + post.slug}
             />
           </a>
         )}
@@ -35,7 +36,7 @@ const { className, posts, fluid } = Astro.props;
               )
               .map((author) => (
                 <a
-                  href={`/staff/${slugify(author.data.title)}`}
+                  href={`/staff/${slugify(author.slug)}`}
                   class="flex items-center hover:text-primary font-medium"
                 >
                   {author.data.image && (
