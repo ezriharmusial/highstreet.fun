@@ -2,7 +2,7 @@
 title: "HighStreet breidt uit met een eigen Minigames Server"
 description: "meta description"
 date: 2023-08-31T05:00:00Z
-image: "https://proxy.spigotmc.org/2fd4f37f90ac564ddbfb7597aa147e342ca2e719?url=https%3A%2F%2Fi.imgur.com%2FQBcG9qj.png"
+image: "/images/posts/partygamesx.jpg"
 categories: ["art"]
 staff: ["Ezzy Harmless"]
 tags: ["minecraft", "java", "bedrock"]

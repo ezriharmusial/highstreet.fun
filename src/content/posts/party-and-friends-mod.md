@@ -2,7 +2,7 @@
 title: "Speel nu Samen in Parties met Vrienden op Highstreet SMP"
 description: "meta description"
 date: 2023-08-31T05:00:00Z
-image: "https://proxy.spigotmc.org/1398ebdf50514e205177c2e5758e05e5309ba642?url=https%3A%2F%2Fsimonsator.de%2Fimages%2Fpartyandfriendspartygui14.png"
+image: "/images/posts/partyandfriends.jpg"
 categories: ["art"]
 staff: ["Ezzy Harmless"]
 tags: ["minecraft", "java", "bedrock"]
