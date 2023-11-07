@@ -5,6 +5,29 @@
       "url": "/"
     },
     {
+      "name": "Servers",
+      "url": "",
+      "hasChildren": true,
+      "children": [
+        {
+          "name": "HighStreet SMP",
+          "url": "/servers/highstreetsmp"
+        },
+        {
+          "name": "PartyGames",
+          "url": "/servers/partygames"
+        },
+        {
+          "name": "Creative Plotz",
+          "url": "/servers/creative-plotz"
+        },
+        {
+          "name": "Leerdam In Minecraft",
+          "url": "/servers/leerdam-in-minecraft"
+        }
+      ]
+    },
+    {
       "name": "Over",
       "url": "/about"
     },
