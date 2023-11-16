@@ -1,0 +1,313 @@
+backend:
+  name: git-gateway
+  branch: main
+# Local testing
+local_backend: true
+i18n:
+  # Required and can be one of multiple_folders, multiple_files or single_file
+  # multiple_folders - persists files in `<folder>/<locale>/<slug>.<extension>`
+  # multiple_files - persists files in `<folder>/<slug>.<locale>.<extension>`
+  # single_file - persists a single file in `<folder>/<slug>.<extension>`
+  structure: multiple_folders
+
+  # Required - a list of locales to show in the editor UI
+  locales: [en, nl]
+
+  # Optional, defaults to the first item in locales.
+  # The locale to be used for fields validation and as a baseline for the entry.
+  default_locale: en
+collections:
+  - name: "staff"
+    label: "Staff"
+    label_singular: "Employee"
+    folder: "src/content/staff/"
+    preview_path: "/en/staff/{{slug}}"
+    summary: "{{name}} ({{title}}) [{{function}}]"
+    identifier_field: name
+    create: true
+    fields:
+      - {label: "Public", name: "public", widget: "boolean", default: true, required: false}
+      - {label: "Created", name: "date", widget: "datetime"}
+      - {label: "Username", name: "username", widget: "string"}
+      - {label: "Name", name: "name", widget: "string"}
+      - {label: "Functie", name: "function", widget: "select", options: ["boardmember", "advisor"], required: false}
+      - {label: "Achtergrond Foto", name: "bgimage", widget: "image", media_folder: "/public/uploads/staff", public_folder: "/uploads/pages", default: /images/manifest/pwa-192x192.png , required: false}
+      - {label: "Profielfoto", name: "image", widget: "image", media_folder: "/public/uploads/staff", public_folder: "/uploads/pages", default: /images/manifest/pwa-192x192.png }
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Bio", name: "body", widget: "markdown"}
+      - label: "Contact Information"
+        name: "contact"
+        widget: "object"
+        collapsed: true
+        fields:
+          - {label: "Telefoon", name: telephone, required: false}
+          - {label: "Email", name: email, required: false}
+          - {label: "Website", name: website, required: false}
+      - label: "Social Media Links"
+        name: "social"
+        widget: "object"
+        collapsed: true
+        fields:
+          - {label: "Intagram Handle", name: instagram, required: false}
+          - {label: "Twitter Handle", name: twitter, required: false}
+          - {label: "Facebook Url", name: facebook, required: false}
+          - {label: "Youtube Url", name: youtube, required: false}
+          - {label: "LinkedIn Url", name: linkedin, required: false}
+
+  - name: "pages"
+    label: "Paginas"
+    label_singular: "Pagina"
+    folder: "src/content/pages/"
+    preview_path: "/en/{{slug}}"
+    i18n: true
+    create: true
+    fields:
+      - {label: "Pubilcatie Datum", name: "date", widget: "datetime", i18n: duplicate}
+      - {label: "Status", name: "status", widget: "select", options: ['published', 'archived'], required: false}
+      - {label: "Auteur", name: author, widget: "relation", collection: "staff", value_field: "{{slug}}", display_fields: ["name", "title"], search_fields: ["name", "username", title ], multiple: false, i18n: duplicate}
+      - {label: "Category", name: "category", widget: "select", options: ["about artkids", "organization", "anbi", "funding"], required: false}
+      - {label: "Titel", name: "title", widget: "string", i18n: true}
+      - {label: "SubTitle", name: "subtitle", widget: "string", required: false, i18n: true}
+      - {label: "Foto", name: "image", widget: "image", media_folder: "/public/uploads/pages", public_folder: "/uploads/pages", required: false, i81n: duplicate}
+      - {label: "Inhoud", name: "body", widget: "markdown", i18n: true}
+      - {label: "Tags (SEO)", name: "tags", widget: "list", default: ["artkids"], required: false, i18n: true}
+      - label: "Search Engine Optimization"
+        name: "seo"
+        widget: "object"
+        collapsed: true
+        i18n: true
+        fields:
+          - {label: "Foto Beschrijving", name: "imageAlt", required: false, i18n: true }
+          - {label: "Title gebruikt voor Delen", name: "seoTitle", required: false, i18n: true }
+          - {label: "Pagina Beschrijving", name: "description", widget: text, required: false, i18n: true }
+      - {label: "Icon", name: "icon", widget: "string", default: "report-line", required: false, i81n: duplicate}
+      - {label: "Icon Pack", name: "pack", widget: "string", default: "mdi", required: false, i81n: duplicate}
+      - {label: "Menu Title", name: "shortTitle", widget: "string", required: false, i18n: true}
+      - {label: "Menu volgorde", name: "index", widget: "number", required: false, i18n: true}
+      - {label: "Layout", name: "layout", widget: "select", options: [{label: 'Page Layout', value: '../../../layouts/Page.astro'}, {label: 'Attachment Layout', value: '../../../layouts/Attachment.astro'}, {label: 'Contact Layout', value: '../../../layouts/Contact.astro'}], default: "../../../layouts/page.astro", required: false, i18n: duplicate}
+
+  - label: "News"
+    name: "linkcasts"
+    folder: src/content/linkcasts
+    preview_path: "/en/newscasts/{{slug}}"
+    sortable_fields: ["date", "title", "author"]
+    create: true
+    fields:
+      - {label: "Auteur", name: author, widget: "relation", collection: "staff", value_field: "{{slug}}", display_fields: ["name", "title"], search_fields: ["name", "username", title ], multiple: false, i18n: duplicate}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Describing Subtitle", name: "subtitle", widget: "string", required: false}
+      - {label: "Post Category", name: "category", widget: "select", multiple: false, options: ["Launches & New Releases", "Artkids Foundation Events", "Social Media & Promotions", "News & Announcements", "Sponsering & Advertisement"], required: false}
+      - {label: "Featured: Image used in blogs/linkcasts", name: image ,widget: "image", required: false, media_folder: "/public/uploads/linkcasts", public_folder: "/uploads/linkcasts"}
+      - {label: "Featured: Image Ratio", name: imageRatio, widget: "select", multiple: false, options: ["aspect-square", "aspect-[16/9]", "aspect-[9/16]", "aspect-[21/9]", "aspect-[4/3]", "aspect-[3/4]"], default: "aspect-square", required: false}
+      - {label: "Linkcast URL", name: "url", widget: "string", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - label: "Search Engine Optimization"
+        name: "seo"
+        widget: "object"
+        collapsed: true
+        fields:
+          - {label: "Foto Beschrijving", name: "imageAlt", required: false }
+          - {label: "Title gebruikt voor Delen", name: "seoTitle", required: false }
+          - {label: "Pagina Beschrijving", name: "description", widget: text, required: false }
+
+  - label: "ArtKids Projects"
+    name: "projects"
+    i18n: true
+    folder: src/content/projects
+    preview_path: "/en/projects/{{slug}}"
+    sortable_fields: ["date", "title", "author"]
+    create: true
+    fields:
+      - {label: "Auteur", name: author, widget: "relation", collection: "staff", value_field: "{{slug}}", display_fields: ["name", "title"], search_fields: ["name", "username", "title" ], multiple: false, i18n: duplicate}
+      - {label: "Title", name: "title", widget: "string", i18n: true}
+      - {label: "SubTitle", name: "subtitle", widget: "string", required: false, i18n: true}
+      - {label: "Foto", name: "image", widget: "image", media_folder: "/public/uploads/pages", public_folder: "/uploads/pages", default: /logo-512.png, i18n: duplicate  }
+      - {label: "Inhoud", name: "body", widget: "markdown", i18n: true}
+      - {label: "Changed Image", name: "changed", widget: "image", required: false, media_folder: "/public/uploads/projects", public_folder: "/uploads/projects", i18n: duplicate }
+      - {label: "Tags (SEO)", name: "tags", widget: "list", default: ["news"], required: false, i18n: true}
+      - {label: "Publish Date", name: "date", widget: "datetime", i18n: true}
+      - label: "Search Engine Optimization"
+        name: "seo"
+        widget: "object"
+        collapsed: true
+        i18n: true
+        fields:
+          - {label: "Foto Beschrijving", name: "imageAlt", required: false, i18n: true }
+          - {label: "Changed Beschrijving", name: "changedAlt", required: false, i18n: true }
+          - {label: "Title gebruikt voor Delen", name: "seoTitle", required: false, i18n: true }
+          - {label: "Call to Action", name: "callToAction", required: false }
+          - {label: "Pagina Beschrijving", name: "description", widget: text, required: false, i18n: true }
+      - {label: "Menu Title", name: "shortTitle", widget: "string", required: false}
+      - {label: "Icon", name: "icon", widget: "string", required: false, i18n: duplicate }
+      - {label: "Icon Pack", name: "pack", widget: "string", required: false, i18n: duplicate }
+
+  - name: "partners"
+    label: "Partners"
+    label_singular: "Partner"
+    folder: "src/content/partners/"
+    preview_path: "/en/partners/{{name}}"
+    summary: "{{name}} [{{type}}]"
+    editor:
+      preview: false
+    identifier_field: name
+    create: true
+    fields:
+      - {label: "Datum", name: "date", widget: "datetime", required: true, hidden: true}
+      - {label: "Type", name: "type", widget: "select", options: ["individual", "group", "company", "ngo", "governmental institution", "school"], default: "individual"}
+      - {label: "Naam", name: "name", widget: "string"}
+      - {label: "Profielfoto", name: "image", widget: "image", media_folder: "/public/uploads/pages", public_folder: "/uploads/pages", default: /images/manifest/pwa-192x192.png }
+      - {label: "Shortbio", name: "body", widget: "markdown"}
+      - label: "Contact Info"
+        name: "contact"
+        widget: "object"
+        collapsed: true
+        fields:
+          - {label: "Contactpersoon", name: contactpersoon, required: false}
+          - {label: "Telefoon", name: telephone, required: false}
+          - {label: "Email", name: email, required: false}
+          - {label: "Website", name: website, required: false}
+
+  - label: "Fundraising Initiatives"
+    name: "initiatives"
+    i18n: true
+    folder: src/content/initiatives
+    preview_path: "/en/initiatives/{{title}}"
+    sortable_fields: ["date", "title", "author"]
+    create: true
+    fields:
+      - {label: "Auteur", name: author, widget: "relation", collection: "staff", value_field: "{{slug}}", display_fields: ["name","title"], search_fields: ["name", "username", "title" ], multiple: false, i18n: duplicate }
+      - {label: "Status", name: "status", widget: "select", options: ["published", "archived"], required: false, i18n: true}
+      - {label: "Initiator", name: "initiator", widget: "relation", collection: "partners", default: "ArtKids", multiple: true, search_fields: ["name"], value_field: "{{slug}}", display_fields: ["name", "type"], i18n: duplicate }
+      - {label: "Umbrella Projects", name: "projects", widget: "relation", collection: "projects", default: "ArtKids", multiple: true, search_fields: ["title"], value_field: "{{slug}}", display_fields: ["title"], i18n: duplicate }
+      - {label: "Title", name: "title", widget: "string", i18n: true }
+      - {label: "SubTitle", name: "subtitle", widget: "string", required: false, i18n: true }
+      - {label: "Foto", name: "image", widget: "image", media_folder: "/public/uploads/initiatives", public_folder: "/uploads/initiatives", default: /logo-512.png, i18n: duplicate }
+      - {label: "Start Date", name: "startDate", widget: "datetime", i18n: duplicate}
+      - {label: "End Date", name: "endDate", widget: "datetime", i18n: duplicate}
+      - {label: "Goal", name: "goal", widget: "number", i18n: true }
+      - {label: "Inhoud", name: "body", widget: "markdown", i18n: true }
+      - {label: "Tags", name: "tags", widget: "list", default: ["news"], required: false, i18n: true}
+      - label: Images
+        name: images
+        widget: list
+        i18n: true
+        field: { label: Image, name: image, widget: image, i18n: duplicate, media_foler: "/public/uploads/initiatives", public_folder: "/uploads/initiatives"}
+      - {label: "Publish Date", name: "date", widget: "datetime", i18n: true }
+      - label: "Search Engine Optimization"
+        name: "seo"
+        widget: "object"
+        collapsed: true
+        i18n: true
+        fields:
+          - {label: "Foto Beschrijving", name: "imageAlt", required: false, i18n: true }
+          - {label: "Title gebruikt voor Delen", name: "seoTitle", required: false, i18n: true }
+          - {label: "Call to Action", name: "callToAction", required: false }
+          - {label: "Pagina Beschrijving", name: "description", widget: text, required: false, i18n: true }
+      - {label: "Menu Titel", name: "shortTitle", widget: "string", required: false, i18n: true }
+      - {label: "Icon", name: "icon", widget: "string", required: false, i18n: duplicate }
+      - {label: "Icon Pack", name: "pack", widget: "string", required: false, i18n: duplicate }
+
+  - name: "donations"
+    label: "Donations"
+    label_singular: "Donation"
+    folder: "src/content/donations/"
+    preview_path: "/en/{{initiative}}/donations/#{{uuid}}"
+    summary: "{{initiative}} - {{donator}} = €{{amount}},-  ({{date}})"
+    sortable_fields: ["date", "amount", "donator", "initiative"]
+    identifier_field: uuid
+    editor:
+      preview: false
+    create: true
+    fields:
+      - {label: 'UUID', name: 'uuid', widget: uuid }
+      - {label: "Datum", name: "date", widget: "datetime"}
+      - {label: "Initiatief", name: "initiative", widget: "relation", collection: "initiatives", display_fields: ["title", "initiator"], value_field: "{{slug}}", search_fields: ["title", "subtitle"], i18n: duplicate}
+      - {label: "Donateur", name: "donator", widget: "string"}
+      - {label: "Bedrag", name: "amount", widget: "number"}
+      - {label: "Bericht", name: "message", widget: "text"}
+
+  # - name: "blog"
+  #   label: "Posts"
+  #   label_singular: "Post"
+  #   folder: "src/content/blog/"
+  #   preview_path: "{{title}}"
+  #   create: true
+  #   fields:
+  #     - {label: "Auteur", name: author, widget: "relation", collection: "authors", value_field: "username", search_fields: ["name", "surnam", "username" ], multiple: false}
+  #     - {label: "Pubilcatie Datum", name: "date", widget: "datetime"}
+  #     - {label: "Menu volgorde", name: "index", widget: "number"}
+  #     - {label: "Pagina Kop Grootte", name: "size", widget: "select", options: [ "is-small", "is-medium", "is-large", "is-halfheight", "is-fullheight" ], required: true, default: "is-fullheight"}
+  #     - {label: "Pagina Titel", name: "title", widget: "string"}
+  #     - {label: "Pagina SubTitle", name: "subtitle", widget: "string"}
+  #     - {label: "Pagina Kleur", name: "color", widget: "select", options: [ "is-primary", "is-success", "is-info", "is-link", "is-danger", "is-warning", "is-light", "is-dark"], default: "primary"}
+  #     - {label: "Foto", name: "image", widget: "image", media_folder: "/public/uploads/pages", public_folder: "/uploads/pages", default: /images/manifest/pwa-192x192.png }
+  #     - {label: "Foto Bescrijfing (SEO)", name: "imageAlt", required: false }
+  #     - {label: "Pagina Text", name: "body", widget: "markdown"}
+  #     - {label: "Tags (SEO)", name: "tags", widget: "list", default: ["news"], required: false}
+  #     - {label: "Korte Pagina Samenvatting (SEO)", name: "description", required: false }
+
+  - label: "Site Settings"
+    name: "settings"
+    files:
+      - label: "Site Info & Branding"
+        name: "info"
+        file: "src/content/settings/_info.yml"
+        fields:
+          - {label: "Site Title", name: title, widget: string}
+          - {label: "Company Name", name: name, widget: string}
+          - {label: "Site Description", name: description, widget: string}
+          - {label: "Email Address", name: email, widget: string}
+          - {label: Telephone, name: telephone, widget: string}
+          - {label: "Bank Account", name: bankaccount, widget: string}
+          - {label: "KVK Nummer", name: kvk, widget: string}
+
+      - label: "Site Settings"
+        name: "settings"
+        file: "src/content/settings/_settings.yml"
+        fields:
+          - {label: "Default Theme", name: theme, widget: "select", options: ["dark", "light"], default: "dark"}
+
+      - label: "Social Links"
+        name: "social"
+        file: "src/content/settings/_social.yml"
+        fields:
+        - {label: "Facebook Address", name: facebook, required: false}
+        - {label: "Twitter Handle", name: twitter, required: false}
+        - {label: "Instagram Handle", name: instagram, required: false}
+        - {label: "Youtube Channel Address", name: youtube, required: false}
+        - {label: "Tiktok Handle", name: tiktok, required: false}
+        - {label: "VSKit Handle", name: vskit, required: false}
+        - {label: "Audiomack Channel", name: audiomack, required: false}
+
+      - label: "SEO Settings"
+        name: "seo"
+        file: "src/content/settings/_seo.yml"
+        fields:
+          - {label: "Facebook App ID", name: fbappid, widget: string}
+          - {label: "Default Share Image", name: image ,widget: "image", required: false, media_folder: "/public/uploads/seo/", public_folder: "/uploads/seo/"}
+
+    # adding a meta object with a path property allows editing the path of entries
+    # moving an existing entry will move the entire sub tree of the entry to the new location
+    # meta: { path: { widget: string, label: "Path", index_file: "index" } }
+
+media_folder: "/public/uploads"
+public_folder: "/uploads"
+search: true
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
+show_preview_links: true
+publish_mode: editorial_workflow
+
+# media_library:
+#   name: cloudinary
+#   config:
+#     cloud_name: artkids-foundation
+#     api_key: 263829663159721
+
+
+site_url: https://www.artkidsfoundation.org
+display_url: https://ArtKidsFoundation.org
+logo_url: /admin/images/artkids-2023.png

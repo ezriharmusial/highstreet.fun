@@ -60,6 +60,7 @@ const { title, meta_title, description, image, noindex, canonical } =
       rel="stylesheet"
     />
 
+    <link href="/fonts/minecraft-regular.css" rel="stylesheet" />
     <!-- responsive meta -->
     <meta
       name="viewport"
@@ -151,9 +152,11 @@ const { title, meta_title, description, image, noindex, canonical } =
       </span>
     <TwSizeIndicator />
     <Header transition:persist />
-    <main id="main-content" class="min-h-[60vh]" transition:animate="fade">
-      <slot />
-    </main>
+      <main id="main-content" class="min-h-[60vh] portrait:pt-20" transition:animate="fade">
+        <slot />
+      </main>
     <Footer />
+	<!-- Netlify Identiy widget -->
+	<script is:inline src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </body>
 </html>

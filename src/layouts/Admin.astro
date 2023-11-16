@@ -1,0 +1,369 @@
+---
+import TwSizeIndicator from "@components/TwSizeIndicator.astro";
+import config from "@config/config.json";
+import theme from "@config/theme.json";
+import { plainify } from "@lib/utils/textConverter";
+import Footer from "@partials/Footer.astro";
+import Header from "@partials/Header.astro";
+import "@styles/style.scss";
+import { fade } from "astro/transitions";
+import { ViewTransitions } from "astro:transitions";
+
+// font families
+const pf = theme.fonts.font_family.primary;
+const sf = theme.fonts.font_family.secondary;
+
+// types for frontmatters
+export interface Props {
+  title?: string;
+  meta_title?: string;
+  description?: string;
+  image?: string;
+  noindex?: boolean;
+  canonical?: string;
+}
+
+// distructure frontmatters
+const { title, meta_title, description, image, noindex, canonical } =
+  Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- favicon -->
+    <link rel="shortcut icon" href={config.site.favicon} />
+    <!-- theme meta -->
+    <meta name="theme-name" content="bookworm-light-astro" />
+    <meta name="msapplication-TileColor" content="#000000" />
+    <link rel="preload" as="image" href={image ? image : config.metadata.meta_image}>
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content="#fff"
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="#000"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- google font css -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href={`https://fonts.googleapis.com/css2?family=${pf}${
+        sf ? "&family=" + sf : ""
+      }&display=swap`}
+      rel="stylesheet"
+    />
+
+    <!-- responsive meta -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=5"
+    />
+
+    <!-- title -->
+    <title>
+      {plainify(meta_title ? meta_title : title ? title : config.site.title)}
+    </title>
+
+    <!-- canonical url -->
+    {canonical && <link rel="canonical" href={canonical} item-prop="url" />}
+
+    <!-- noindex robots -->
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://unpkg.com/@staticcms/app@^2.0.0/dist/main.css" />
+    <ViewTransitions />
+  </head>
+  <body transition:animate={fade({ duration: "0.45" })}>
+	  	<script is:inline src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  </body>
+
+	<!-- Netlify Identiy widget -->
+	<script is:inline src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</html>
+
+<style is:global>
+/* Custom Menu */
+.adminLayout aside a span {
+	display: inline-flex !important;
+	justify-content: center;
+	align-items: center
+}
+
+.adminLayout aside a span svg {
+	display: none !important;
+}
+
+.adminLayout aside a span::before {
+	font-family: "Font Awesome 5 Free";
+	font-size: 1rem;
+	font-weight: bold;
+}
+
+.adminLayout aside a[href="#/collections/linkcasts"] span::before {
+	content: "\f1ea";
+}
+
+.adminLayout aside a[href="#/collections/pages"] span::before {
+	content: "\f15c";
+}
+
+.adminLayout aside a[href="#/collections/staff"] span::before {
+	content: "\f2b9";
+}
+
+.adminLayout aside a[href="#/collections/projects"] span::before {
+	content: "\f07c";
+}
+
+.adminLayout aside a[href="#/collections/initiatives"] span::before {
+	content: "\f2b5";
+}
+
+.adminLayout aside a[href="#/collections/partners"] span::before {
+	content: "\f2b9";
+}
+
+.adminLayout aside a[href="#/collections/donations"] span::before {
+	content: "\f3d1";
+}
+
+.adminLayout aside a[href="#/collections/settings"] span::before {
+	content: "\f1de";
+}
+
+.adminLayout [class*=GridCardLink]:before{
+	content: ' ';
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0.6;
+	background-image: url('https://static.vecteezy.com/system/resources/previews/004/141/669/original/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg');
+	background-repeat: no-repeat;
+	background-position: 50% 10%;
+	background-size: cover;
+}
+
+.adminLayout a[class*=GridCardLink][href="#/collections/settings/entries/info"]:before{
+	background-image: url("https://img.freepik.com/premium-vector/vector-web-site-design-template-branding-digital-marketing-company-identity-brand-business-landing-page-concepts-website-mobile-development-modern-flat-illustration_88813-2058.jpg?w=2000");
+}
+
+.adminLayout a[class*=GridCardLink][href="#/collections/settings/entries/seo"]:before{
+	background-image: url("https://www.glitztechnology.com/_next/public/images/seo.2-58442dde0ae8e7df50d693b90c0a740e.png");
+}
+
+.adminLayout a[class*=GridCardLink][href="#/collections/settings/entries/social"]:before{
+	background-image: url("https://www.terawork.com/blog/wp-content/uploads/2022/10/16-reasons-why-social-media-is-important-to-your-company-616d3200e6dc6-sej-1.png");
+}
+
+.adminLayout a[class*=GridCardLink][href="#/collections/settings/entries/settings"]:before{
+	background-image: url("https://entrepreneurhandbook.co.uk/wp-content/uploads/2019/05/Website-image.jpg.webp");
+}
+
+.adminLayout [class*=SidebarHeading],
+.adminLayout [class*=CollectionTopHeading-cardTopHeading]{
+	font-size: 1.5rem !important;
+}
+
+/* Custom Card styles */
+.adminLayout [class*=GridCardLink]{
+	position: relative;
+}
+
+.adminLayout [class*=CardBody]{
+	background-color: rgba(240, 240, 255, 0.419);
+	backdrop-filter: blur(4px) brightness(120%) contrast(50%);
+	z-index: 10;
+	height: 55px !important;
+}
+
+.adminLayout [class*=CardBody]:after{
+	box-shadow: rgba(255, 255, 255, .2) 0px -15px 24px inset !important;
+}
+
+.adminLayout [class*=CardHeading],
+.adminLayout [class*=ListCardTitle]
+{
+	color: black !important;
+	font-size: 1.1rem !important;
+	font-weight: 400 !important;
+	line-height: 1.2rem !important;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.adminLayout a:hover [class*=CardImage] {
+	transform: scale(1.2);
+	background-position-y: 9%;
+}
+
+.adminLayout [class*=CardImage]{
+	position: absolute;
+	background-color: rgba(0, 0, 255, 0.071);
+	background-position-y: 6%;
+	transform: scale(1.1);
+	height: 100% !important;
+	width: 100%;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	transition: all ease-in-out 1s;
+}
+
+.adminLayout [class*=EditorContainer],
+.adminLayout [class*=FieldLabel-fieldLabel]::after,
+.adminLayout [class*=NoPreviewContainer-card-splitPane]{
+	background: transparent !important;
+}
+
+/* Forms */
+.adminLayout [class*=FieldLabel-fieldLabel] {
+	background-color: rgba(240, 240, 255, 1);
+}
+
+.adminLayout input[type=text]{
+	border-radius: 0px 5px 5px !important;
+}
+
+/* Mobile Friendly Styles */
+@media (orientation: portrait) {
+
+	.adminLayout [class*=BackArrow] {
+		margin-right: 0 !important;
+	}
+
+	.adminLayout [class*=BackStatus],
+	.adminLayout [class*=BackCollection] {
+		background-color: #fff;
+		position: fixed !important;
+		display: none !important;
+		top: 0rem;
+		height: 2rem;
+		left: 4rem;
+		font-size: .8rem;
+		z-index: 20;
+		padding: 0.3rem  0.5rem;
+		border: 1px solid #eef;
+		width: unset !important;
+	}
+
+	.adminLayout [class*=BackStatus]{
+		margin: 0 !important;
+	}
+
+	.adminLayout [class*=BackCollection] {
+		width: 8rem !important;
+		top: 2rem !important;
+	}
+
+	.adminLayout [class*=AppHeaderContent],
+	.adminLayout [class*=AppMainContainer] {
+		margin-right: 0 !important;
+		margin-left: 0 !important;
+		min-width: calc(100vw - 24px) !important;
+		max-width: 100vw !important;
+	}
+
+	.adminLayout [class*=AppHeaderContent] {
+		display: flex !important;
+		justify-content: space-between;
+	}
+
+	.adminLayout [class*=AppHeaderQuickNewButton] {
+		width: 100% !Important;
+	}
+
+	.adminLayout [class*=AppHeaderButton] {
+		padding-left: 4px !important;
+		padding-right: 4px !important;
+	}
+
+	.adminLayout [class*=EditorContainer],
+	.adminLayout [class*=ToolbarContainer] {
+		min-width: initial !important;
+	}
+
+	.adminLayout [class*=ControlPaneContainer]{
+		padding: 1rem !important;
+	}
+
+	.adminLayout [class*=ToolbarSubSectionFirst] {
+		display: flex !important;
+		flex-direction: row !important;
+	}
+
+	.adminLayout [class*=AppHeaderSiteLink],
+	.adminLayout [class*=DeleteButton],
+	.adminLayout [class*=PublishedToolbarButton] {
+		padding: 0 .3rem !important;
+	}
+
+	.adminLayout [class*=DeleteButton],
+	.adminLayout [class*=PublishedToolbarButton],
+	.adminLayout [class*=ToolbarDropdown-buttonMargin] {
+		margin: 0 0.3rem !important;
+	}
+
+	.adminLayout [class*=PublishedToolbarButton]::after {
+		display: none !important;
+	}
+
+	.adminLayout [class*=ViewControls] {
+		/* position: initial; */
+	}
+
+	.adminLayout [class*=PreviewPaneContainer-ControlPaneContainer] {
+		padding: 0 !important;
+	}
+
+	.adminLayout [class*=ControlPaneContainer] {
+		max-width: 100vw !important;
+	}
+
+	.adminLayout [class*=CollectionContainer],
+	.adminLayout [class*=EditorControlBar] [class*=ToolbarContainer] {
+		display: flex !important;
+		flex-direction: column !important;
+	}
+
+	.adminLayout [class*=SidebarContainer] {
+		position: initial !important;
+		width: initial !important;
+	}
+
+	.adminLayout [class*=ToolbarSectionMain-toolbarSection] {
+		padding: 0 !important;
+	}
+
+	.adminLayout [class*=CollectionMain] {
+		padding-left: 0 !important;
+		margin-top: 20px !important;
+	}
+
+	.adminLayout .Pane.vertical.Pane2 {
+		position: fixed !important;
+		width: 100vw !important;
+	}
+
+	.adminLayout h1,
+	.adminLayout h2,
+	.adminLayout h3,
+	.adminLayout h4,
+	.adminLayout h5,
+	.adminLayout h6 {
+		font-size: 20% !important;
+	}
+}
+</style>

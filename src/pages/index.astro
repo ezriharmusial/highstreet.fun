@@ -1,5 +1,6 @@
 ---
 import config from "@config/config.json";
+import Webpromo from "@layouts/components/webpromo/Webpromo.astro";
 import Base from "@layouts/Base.astro";
 import Pagination from "@layouts/components/Pagination.astro";
 import Posts from "@layouts/Posts.astro";
@@ -13,10 +14,16 @@ const currentPosts = sortedPosts.slice(0, config.settings.pagination);
 ---
 
 <Base>
-  <section class="section">
-    <div class="container">
-      <Posts posts={currentPosts} className="mb-16" />
-      <Pagination currentPage={1} totalPages={totalPages} />
-    </div>
-  </section>
+  <Webpromo />
+  <div class="flex justify-center portrait:flex-col">
+    <section class="section">
+      <div class="container">
+        <Posts posts={currentPosts} className="mb-16" />
+        <Pagination currentPage={1} totalPages={totalPages} />
+      </div>
+    </section>
+    <aside class="mt-24">
+      <iframe src="https://discord.com/widget?id=1114962379843829840&theme=dark" class="rounded-lg" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+    </aside>
+  </div>
 </Base>

@@ -17,7 +17,7 @@ input#nav-toggle:checked ~ #nav-menu {
 }
 
 .navbar-brand img {
-  @apply h-auto max-w-[170px] sm:h-auto sm:max-w-full #{!important};
+  @apply h-auto max-w-[300px] portrait:max-h-10 object-top object-cover overflow-hidden sm:h-auto sm:max-w-full #{!important};
 }
 
 .navbar-nav {
