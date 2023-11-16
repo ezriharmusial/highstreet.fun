@@ -1,7 +1,7 @@
 ---
 title: "Incendium als Nether en NullScape als End"
 description: "meta description"
-date: 2023-11-71T03:23:00Z
+date: 2023-11-7T03:23:00Z
 image: "/images/posts/incendium.jpg"
 categories: ["art"]
 staff: ["Ezzy Harmless"]
