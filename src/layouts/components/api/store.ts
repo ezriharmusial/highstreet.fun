@@ -27,15 +27,18 @@ export const nations = derived(apiData, ($apiData) => {
 const setNations = async () => {
   let $apiData = get(apiData)
 
-	const response = await fetch('http://192.168.178.59:8124/nations');
+	const response = await fetch('https://towny.highstreet.fun/nations');
 	const result = await response.json();
-
+  const nations = result.slice(1, -1).split(', ');
+  nations.forEach((nation) => {
+    $apiData.nations.push(fetchNation(nation))
+  });
   apiData.set($apiData)
 }
 
 // Get a single nation
 const fetchNation = async (nation:string) => {
-	const response = await fetch('http://192.168.178.59:8124/nation/' + nation);
+	const response = await fetch('https://towny.highstreet.fun/nation/' + nation);
 	const result = await response.json();
 
 	return result;
@@ -43,7 +46,7 @@ const fetchNation = async (nation:string) => {
 
 // Get a Single town
 const fetchTown = async (town:string) => {
-	const response = await fetch('http://192.168.178.59:8124/town/' + town);
+	const response = await fetch('https://towny.highstreet.fun/town/' + town);
 	const result = await response.json();
 
 	return result;
@@ -51,8 +54,10 @@ const fetchTown = async (town:string) => {
 
 // Get a Single Player
 const fetchPlayer = async (player:string) => {
-	const response = await fetch('http://192.168.178.59:8124/resident/' + player);
+	const response = await fetch('https://towny.highstreet.fun/resident/' + player);
 	const result = await response.json();
 
 	return result;
 }
+
+setNations()

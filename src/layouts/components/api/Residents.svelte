@@ -5,7 +5,7 @@ let residents
 
 onMount(async () => {
   // Get Residents
-  fetch("http://192.168.178.59:8124/residents")
+  fetch("https://towny.highstreet.fun/residents")
   .then(response => {
     console.log(response)
     return response.json()

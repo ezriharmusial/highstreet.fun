@@ -7,7 +7,7 @@ let nationsList
 onMount(async () => {
 
   // Get Nation info
-  fetch("http://192.168.178.59:8124/nations")
+  fetch("https://towny.highstreet.fun/nations")
   .then(response => {
     console.log(response)
     return response.json()

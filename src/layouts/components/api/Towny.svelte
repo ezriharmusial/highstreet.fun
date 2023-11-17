@@ -1,5 +1,6 @@
 <script>
 import { onMount } from "svelte";
+import { apiData } from "./store";
 
 import Residents from "./Residents.svelte"
 import Nations from "./Nations.svelte"
@@ -11,7 +12,7 @@ let residents
 onMount(async () => {
 
   // Get Nations
-  fetch("http://192.168.178.59:8124/nations")
+  fetch("https://towny.highstreet.fun/nations")
   .then(response => {
     console.log(response)
     return response.json()
@@ -25,7 +26,7 @@ onMount(async () => {
   });
 
   // Get Towns
-  fetch("http://192.168.178.59:8124/towns")
+  fetch("https://towny.highstreet.fun/towns")
   .then(response => {
     console.log(response)
     return response.json()
@@ -38,12 +39,14 @@ onMount(async () => {
     return [];
   });
 });
+// $: console.log($apiData)
+
 </script>
 
 <main class="container content">
 	<h1>HighStreet SMP Towny World</h1>
   <h2>Naties</h2>
-  <Nations />
+  <Nations client:only />
   <h2>Steden</h2>
   <ul>
   {#each towns as town}
@@ -51,7 +54,7 @@ onMount(async () => {
   {/each}
   </ul>
   <h2>Spelers</h2>
-  <Residents />
+  <Residents client:only/>
 </main>
 
 <style>
