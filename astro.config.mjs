@@ -4,26 +4,24 @@ import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
 import config from "./src/config/config.json";
 
+import svelte from "@astrojs/svelte";
+
 // https://astro.build/config
 export default defineConfig({
   site: config.site.base_url ? config.site.base_url : "https://highstreet.fun",
   base: config.site.base_path ? config.site.base_path : "/",
   trailingSlash: config.site.trailing_slash ? "always" : "never",
-  integrations: [
-    react(),
-    sitemap(),
-    tailwind({
-      config: {
-        applyBaseStyles: false,
-      },
-    }),
-  ],
+  integrations: [react(), svelte(), sitemap(), tailwind({
+    config: {
+      applyBaseStyles: false
+    }
+  })],
   markdown: {
     remarkPlugins: [],
     shikiConfig: {
       theme: "one-dark-pro",
-      wrap: true,
+      wrap: true
     },
-    extendDefaultPlugins: true,
-  },
+    extendDefaultPlugins: true
+  }
 });
