@@ -19,18 +19,18 @@ let residents = residentsResponse.residents.slice(1, -1).split(', ')
 <main class="container content">
 	<h1>HighStreet SMP Towny World</h1>
   <h2>Naties</h2>
-  <!-- {nations.map(nation => (
+  {nations.map(nation => (
   <Nation nationName={nation} />
-  ))} -->
+  ))}
   <h2>Steden</h2>
   {towns.map(town => (
     <Town townName={town} />
   ))}
   <h2>Spelers</h2>
   <section class="grid landscape:2xl:grid-cols-3 landscape:md:grid-cols-2"></section>
-  <!-- {residents.map(resident => (
+  {residents.map(resident => (
     <PlayerCard playerName={resident} />
-  ))} -->
+  ))}
 </main>
 
 <style>

@@ -2,9 +2,6 @@
 const { townName } = Astro.props
 let apiRes = await fetch(`https://towny.highstreet.fun/town/${townName}`)
 let townData = await apiRes.json();
-
-console.log('town:',townData)
-
 ---
 
 
