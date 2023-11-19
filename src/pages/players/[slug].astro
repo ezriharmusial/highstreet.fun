@@ -1,0 +1,31 @@
+---
+import Base from "@layouts/Base.astro";
+import PlayerCard from "@layouts/components/PlayerCard.astro";
+
+const { slug } = Astro.params;
+
+let apiRes = await fetch(`https://api.highstreet.fun/users/${slug}`)
+let apiPlayer = await apiRes.json();
+let townyRes = await fetch(`https://towny.highstreet.fun/resident/${slug}`)
+let townyPlayer = await townyRes.json();
+
+// The getStaticPaths() is required for static Astro sites.
+// If using SSR, you will not need this function.
+export async function getStaticPaths() {
+  let response = await fetch("https://towny.highstreet.fun/residents")
+  let data = await response.json();
+  let playerList = data.residents.slice(1,-1).split(', ')
+
+  return playerList.map((playerName) => ({
+    params: { slug: playerName },
+    props: { players: playerList },
+  }));
+
+}
+
+
+---
+
+<Base>
+<PlayerCard playerName={slug} />
+</Base>

@@ -28,6 +28,10 @@
       ]
     },
     {
+      "name": "Spelers",
+      "url": "/players"
+    },
+    {
       "name": "Over",
       "url": "/about"
     },

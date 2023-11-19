@@ -1,0 +1,41 @@
+---
+const { townName } = Astro.props
+let apiRes = await fetch(`https://towny.highstreet.fun/town/${townName}`)
+let townData = await apiRes.json();
+
+console.log('town:',townData)
+
+---
+
+
+  <div class="card bg-black/10 rounded-md p-4 variant-ghost card-hover m-4">
+    <span class="flex content">
+      <figure class="text-center m-4 flex flex-col justify-center">
+        <figcaption class="mb-2 bg-black/40 text-white font-bold rounded-md">{townData.name.formatted}</figcaption>
+      </figure>
+      <dl class="divide-y divide-gray-100">
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">Natie</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{townData.nation || '-'}</dd>
+        </div>
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">Welkomstbericht</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{townData.board}</dd>
+        </div>
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">Tag</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{townData.tag}</dd>
+        </div>
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">Oprichter</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{townData.founder}</dd>
+        </div>
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">Burgemeester</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{townData.mayour}</dd>
+        </div>
+
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">Bewoners</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{townData.residents}</dd>
+        </div>
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">Criminelen</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{townData.outlaws}</dd>
+        </div>
+      </dl>
+    </span>
+  </div>

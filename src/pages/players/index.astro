@@ -1,0 +1,23 @@
+---
+import Base from "@layouts/Base.astro";
+import PlayerCard from "@layouts/components/PlayerCard.astro";
+
+// import { getSinglePage } from "@lib/contentParser.astro";
+// import { sortByDate } from "@lib/utils/sortFunctions";
+let response = await fetch("https://towny.highstreet.fun/residents")
+let data = await response.json();
+let playerList = data.residents.slice(1,-1).split(', ')
+---
+
+<Base>
+
+Players {playerList.length}
+
+
+<div class="grid landscape:2xl:grid-cols-3 landscape:md:grid-cols-2 gap-2">
+  {playerList.map(player => (
+    <PlayerCard playerName={player} />
+  ))}
+</div>
+
+</Base>

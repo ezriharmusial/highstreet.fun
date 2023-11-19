@@ -1,0 +1,38 @@
+---
+import PlayerCard from "../PlayerCard.astro"
+import Nation from "./Nation.astro"
+import Town from "./Town.astro"
+
+let nationsPromise = await fetch("https://towny.highstreet.fun/nations")
+let nationsResponse = await nationsPromise.json()
+let nations = nationsResponse.nations.slice(1, -1).split(', ')
+
+let townsPromise = await fetch("https://towny.highstreet.fun/towns")
+let townsResponse = await townsPromise.json()
+let towns = townsResponse.towns.slice(1, -1).split(', ')
+
+let residentsPromise = await fetch("https://towny.highstreet.fun/residents")
+let residentsResponse = await residentsPromise.json()
+let residents = residentsResponse.residents.slice(1, -1).split(', ')
+---
+
+<main class="container content">
+	<h1>HighStreet SMP Towny World</h1>
+  <h2>Naties</h2>
+  <!-- {nations.map(nation => (
+  <Nation nationName={nation} />
+  ))} -->
+  <h2>Steden</h2>
+  {towns.map(town => (
+    <Town townName={town} />
+  ))}
+  <h2>Spelers</h2>
+  <section class="grid landscape:2xl:grid-cols-3 landscape:md:grid-cols-2"></section>
+  <!-- {residents.map(resident => (
+    <PlayerCard playerName={resident} />
+  ))} -->
+</main>
+
+<style>
+
+</style>

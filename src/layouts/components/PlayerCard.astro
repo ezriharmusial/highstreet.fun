@@ -1,0 +1,51 @@
+---
+import { Image } from "astro:assets";
+
+const { playerName } = Astro.props
+
+let apiRes = await fetch(`https://api.highstreet.fun/users/${playerName}`)
+let playerData = await apiRes.json();
+
+let townyRes = await fetch(`https://towny.highstreet.fun/resident/${playerName}`)
+playerData.towny = await townyRes.json();
+---
+{playerData &&
+  <div class="card bg-black/10 rounded-md p-4 variant-ghost card-hover m-4 relative">
+    <a class="absolute top-0 left-0 right-0 bottom-0" href={"/players/" + playerName} alt={playerName + "'s Player profile"}></a>
+    <span class="flex content">
+      <figure class="text-center m-4 flex flex-col justify-center">
+        <figcaption class="mb-2 bg-black/40 text-white font-bold rounded-md">{playerName}</figcaption>
+            <Image
+              class="group-hover:scale-[1.03] transition duration-300 w-full"
+              src={"https://mc-heads.net/head/" + playerName}
+              alt={playerName}
+              width={150}
+              height={150}
+              transition:name={"image" + playerName}
+            />
+
+      </figure>
+      <dl class="divide-y divide-gray-100">
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">Laatst gespot</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.last_seen }</dd>
+        </div>
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">Titel</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.towny?.title || "-"}</dd>
+        </div>
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">Dorp</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.towny?.town || "-"}</dd>
+        </div>
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">Natie</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.towny?.nation || "-"}</dd>
+        </div>
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">Balance</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.balance }</dd>
+        </div>
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">Vrienden</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.towny?.friends }</dd>
+        </div>
+      </dl>
+    </span>
+  </div>
+
+}

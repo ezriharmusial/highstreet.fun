@@ -1,0 +1,49 @@
+---
+const { nationName } = Astro.props
+let apiRes = await fetch(`https://towny.highstreet.fun/nation/${nationName}`)
+let nationData = await apiRes.json();
+
+---
+  <div class="card bg-black/10 rounded-md p-4 variant-ghost card-hover m-4">
+    <span class="flex content">
+      <figure class="text-center m-4 flex flex-col justify-center">
+        <figcaption class="mb-2 bg-black/40 text-white font-bold rounded-md">{nationData.name.raw}</figcaption>
+      </figure>
+      <dl class="divide-y divide-gray-100">
+
+
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">Welkomstbericht</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{nationData.board}</dd>
+        </div>
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">Tag</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{nationData.tag}</dd>
+        </div>
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">Heerser</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{nationData.king}</dd>
+        </div>
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">Assistenten</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{nationData.assistants}</dd>
+        </div>
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">Hoofdstad</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{nationData.capital}</dd>
+        </div>
+
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">Vestigingen</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{nationData.towns}</dd>
+        </div>
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">Bewoners</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{nationData.residents}</dd>
+        </div>
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">Bondgenoten</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{nationData.allies}</dd>
+        </div>
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">Vijanden</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{nationData.enemies}</dd>
+        </div>
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">Criminelen</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{nationData.outlaws}</dd>
+        </div>
+      </dl>
+    </span>
+  </div>
+}
