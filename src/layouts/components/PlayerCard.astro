@@ -3,8 +3,11 @@ import { Image } from "astro:assets";
 
 const { playerName } = Astro.props
 
-let apiRes = await fetch(`https://api.highstreet.fun/users/${playerName}`)
-let playerData = await apiRes.json();
+let userRes = await fetch(`https://api.highstreet.fun/users/${playerName}`)
+let userData = await userRes.json();
+
+let playerRes = await fetch(`https://api.highstreet.fun/player/${playerName}`)
+let playerData = await playerRes.json();
 
 let townyRes = await fetch(`https://towny.highstreet.fun/resident/${playerName}`)
 playerData.towny = await townyRes.json();
@@ -14,7 +17,7 @@ playerData.towny = await townyRes.json();
     <a class="absolute top-0 left-0 right-0 bottom-0" href={"/players/" + playerName} alt={playerName + "'s Player profile"}></a>
     <span class="flex content">
       <figure class="text-center m-4 flex flex-col justify-center">
-        <figcaption class="mb-2 bg-black/40 text-white font-bold rounded-md">{playerName}</figcaption>
+        <figcaption class="mb-2 bg-black/40 text-white font-bold rounded-md">{userData?.rank} {playerName}</figcaption>
             <Image
               class="group-hover:scale-[1.03] transition duration-300 w-full"
               src={"https://mc-heads.net/head/" + playerName}
@@ -27,7 +30,18 @@ playerData.towny = await townyRes.json();
       </figure>
       <dl class="divide-y divide-gray-100">
         <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-          <dt class="text-sm font-bold leading-6 text-gray-900">Laatst gespot</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.last_seen }</dd>
+          <dt class="text-sm font-bold leading-6 text-gray-900">Spelersgroep</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{userData?.groups }</dd>
+        </div>
+         <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">OP</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{userData?.op }</dd>
+        </div>
+         <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">Online</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{userData?.online }</dd>
+        </div>
+
+
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">Laatst gespot</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{userData?.last_seen }</dd>
         </div>
         <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
           <dt class="text-sm font-bold leading-6 text-gray-900">Titel</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.towny?.title || "-"}</dd>
@@ -39,7 +53,7 @@ playerData.towny = await townyRes.json();
           <dt class="text-sm font-bold leading-6 text-gray-900">Natie</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.towny?.nation || "-"}</dd>
         </div>
         <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-          <dt class="text-sm font-bold leading-6 text-gray-900">Balance</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.balance }</dd>
+          <dt class="text-sm font-bold leading-6 text-gray-900">Balance</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">€ {playerData?.balance_formatted } (€ {playerData?.balance_commas})</dd>
         </div>
         <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
           <dt class="text-sm font-bold leading-6 text-gray-900">Vrienden</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.towny?.friends }</dd>

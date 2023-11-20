@@ -26,7 +26,7 @@ let residents = residentsResponse.residents.slice(1, -1).split(', ')
   {towns.map(town => (
     <Town townName={town} />
   ))}
-  <h2>Spelers</h2>
+  <h2>Spelers {residents.length}</h2>
   <section class="grid landscape:2xl:grid-cols-3 landscape:md:grid-cols-2"></section>
   {residents.map(resident => (
     <PlayerCard playerName={resident} />
