@@ -144,7 +144,7 @@ const { title, meta_title, description, image, noindex, canonical } =
     <meta name="twitter:card" content="summary_large_image" />
     <ViewTransitions />
   </head>
-  <body transition:animate={fade({ duration: "0.45" })}>
+  <body transition:animate={fade({ duration: "0.45" })} style="background: url('https://karenmenezes.com/static/img/demos/shapes-polygon/bg-cubes.png');">
     	<!-- SEO section -->
       <link itemprop="thumbnailUrl" href={`${image?.startsWith('http') ? "" : config.site.base_url}${image ? image : config.metadata.meta_image}`}>
       <span class="hidden" itemprop="thumbnail" itemscope itemtype="http://schema.org/ImageObject">
