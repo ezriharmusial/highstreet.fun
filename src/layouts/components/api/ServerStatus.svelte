@@ -11,5 +11,5 @@
 {JSON.stringify(data, null, 2)}
 </pre>
 {:catch error }
-<span>Oops er ging iets fout:{error}</span>
+<p>Oops er ging iets fout: {error}</p>
 {/await}
