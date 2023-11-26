@@ -1,6 +1,7 @@
 ---
 import Base from "@layouts/Base.astro";
 import PlayerCard from "@layouts/components/PlayerCard.astro";
+import SkinView from "@layouts/components/react/SkinView.svelte";
 
 const { slug } = Astro.params;
 
@@ -27,5 +28,9 @@ export async function getStaticPaths() {
 ---
 
 <Base>
+<div class="flex">
+
+<SkinView skin={"https://mc-heads.net/skin/" + slug} nameTag={slug} client:only="svelte" />
 <PlayerCard playerName={slug} />
+</div>
 </Base>

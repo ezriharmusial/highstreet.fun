@@ -18,31 +18,71 @@ playerData.towny = await townyRes.json();
     <span class="flex content">
       <figure class="text-center m-4 flex flex-col justify-center">
         <figcaption class="mb-2 bg-black/40 text-white font-bold rounded-md">{userData?.rank} {playerName}</figcaption>
-            <Image
-              class="group-hover:scale-[1.03] transition duration-300 w-full"
-              src={"https://mc-heads.net/head/" + playerName}
-              alt={playerName}
-              width={150}
-              height={150}
-              transition:name={"image" + playerName}
-            />
+        <Image
+        class="group-hover:scale-[1.03] transition duration-300 w-full"
+        src={"https://mc-heads.net/head/" + playerName}
+        alt={playerName}
+        width={150}
+        height={150}
+        transition:name={"image" + playerName}
+        />
 
       </figure>
       <dl class="divide-y divide-gray-100">
+
         <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
           <dt class="text-sm font-bold leading-6 text-gray-900">Spelersgroep</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{userData?.groups }</dd>
         </div>
-         <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
           <dt class="text-sm font-bold leading-6 text-gray-900">OP</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{userData?.op }</dd>
         </div>
-         <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
           <dt class="text-sm font-bold leading-6 text-gray-900">Online</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{userData?.online }</dd>
         </div>
-
-
         <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
           <dt class="text-sm font-bold leading-6 text-gray-900">Laatst gespot</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{userData?.last_seen }</dd>
         </div>
+      </dl>
+
+      <dl class="divide-y divide-gray-100">
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">Balance</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">€ {playerData?.balance_formatted } (€ {playerData?.balance_commas})</dd>
+        </div>
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">Health</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{Math.round(playerData?.health)}/{Math.round(playerData?.max_health)}</dd>
+        </div>
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">Exp</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.xp || "-"} {playerData?.xp_to_level}(Total: {playerData?.total_xp})</dd>
+        </div>
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">Online</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.online }</dd>
+        </div>
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">Laatst gespot</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.last_seen }</dd>
+        </div>
+      </dl>
+
+      <!-- Elite Mobs -->
+      <dl class="divide-y divide-gray-100">
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">Huidige Rank</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.em_guild_rank_name} ({playerData?.em_guild_rank_number})</dd>
+          <dt class="text-sm font-bold leading-6 text-gray-900">Max Rank</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.em_guild_rank_name_max} ({playerData?.em_guild_rank_number_max})</dd>
+          <dt class="text-sm font-bold leading-6 text-gray-900">Prestige Rank</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">({playerData?.em_guild_rank_number_prestige})</dd>
+        </div>
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">EM Coins</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.em_money || "-"}</dd>
+        </div>
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">EM Kills</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.em_player_kills || "-"}</dd>
+        </div>
+
+        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-bold leading-6 text-gray-900">Em Deaths</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.em_player_deaths || "-"}</dd>
+        </div>
+      </dl>
+
+      <!-- Towny -->
+      <dl class="divide-y divide-gray-100">
         <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
           <dt class="text-sm font-bold leading-6 text-gray-900">Titel</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.towny?.title || "-"}</dd>
         </div>
@@ -52,9 +92,7 @@ playerData.towny = await townyRes.json();
         <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
           <dt class="text-sm font-bold leading-6 text-gray-900">Natie</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.towny?.nation || "-"}</dd>
         </div>
-        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-          <dt class="text-sm font-bold leading-6 text-gray-900">Balance</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">€ {playerData?.balance_formatted } (€ {playerData?.balance_commas})</dd>
-        </div>
+
         <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
           <dt class="text-sm font-bold leading-6 text-gray-900">Vrienden</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.towny?.friends }</dd>
         </div>

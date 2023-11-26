@@ -4,6 +4,8 @@ import Webpromo from "@layouts/components/webpromo/Webpromo.astro";
 import Base from "@layouts/Base.astro";
 import Pagination from "@layouts/components/Pagination.astro";
 import Posts from "@layouts/Posts.astro";
+import ServerStatus from "@layouts/components/api/ServerStatus.svelte";
+
 import { getSinglePage } from "@lib/contentParser.astro";
 import { sortByDate } from "@lib/utils/sortFunctions";
 
@@ -24,6 +26,7 @@ const currentPosts = sortedPosts.slice(0, config.settings.pagination);
     </section>
     <aside class="mt-24">
       <iframe src="https://discord.com/widget?id=1114962379843829840&theme=dark" class="rounded-lg" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+      <ServerStatus client:only="svelte"/>
     </aside>
   </div>
 </Base>
