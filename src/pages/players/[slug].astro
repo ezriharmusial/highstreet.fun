@@ -28,9 +28,10 @@ export async function getStaticPaths() {
 ---
 
 <Base>
-<div class="flex">
-
-<SkinView skin={"https://mc-heads.net/skin/" + slug} nameTag={slug} client:only="svelte" />
+<div class="flex justify-center aspect-video landscape:w:screen overflow-hidden">
+  <SkinView skin={"https://mc-heads.net/skin/" + slug} nameTag={slug} client:only="svelte" />
+</div>
+<div class="flex -mt-48">
 <PlayerCard playerName={slug} />
 </div>
 </Base>

@@ -13,23 +13,10 @@ let townyRes = await fetch(`https://towny.highstreet.fun/resident/${playerName}`
 playerData.towny = await townyRes.json();
 ---
 {playerData &&
-  <div class="card bg-black/10 rounded-md p-4 variant-ghost card-hover m-4 relative">
-    <a class="absolute top-0 left-0 right-0 bottom-0" href={"/players/" + playerName} alt={playerName + "'s Player profile"}></a>
-    <span class="flex content">
-      <figure class="text-center m-4 flex flex-col justify-center">
-        <figcaption class="mb-2 bg-black/40 text-white font-bold rounded-md">{userData?.rank} {playerName}</figcaption>
-        <Image
-        class="group-hover:scale-[1.03] transition duration-300 w-full"
-        src={"https://mc-heads.net/head/" + playerName}
-        alt={playerName}
-        width={150}
-        height={150}
-        transition:name={"image" + playerName}
-        />
-
-      </figure>
+  <div class="flex portrait:flex-col justify-center mx-auto">
+    <section class="card bg-slate-400/90 rounded-md p-4 variant-ghost w-full card-hover m-4 relative">
+      <h3>Player</h3>
       <dl class="divide-y divide-gray-100">
-
         <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
           <dt class="text-sm font-bold leading-6 text-gray-900">Spelersgroep</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{userData?.groups }</dd>
         </div>
@@ -43,7 +30,10 @@ playerData.towny = await townyRes.json();
           <dt class="text-sm font-bold leading-6 text-gray-900">Laatst gespot</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{userData?.last_seen }</dd>
         </div>
       </dl>
+  </section>
 
+  <section class="card bg-slate-400/90 rounded-md p-4 variant-ghost w-full card-hover m-4 relative">
+      <h3>Live Stats</h3>
       <dl class="divide-y divide-gray-100">
         <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
           <dt class="text-sm font-bold leading-6 text-gray-900">Balance</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">€ {playerData?.balance_formatted } (€ {playerData?.balance_commas})</dd>
@@ -62,7 +52,11 @@ playerData.towny = await townyRes.json();
         </div>
       </dl>
 
-      <!-- Elite Mobs -->
+  </section>
+
+  <section class="card bg-slate-400/80 rounded-md p-4 variant-ghost w-full card-hover m-4 relative">
+    <!-- Elite Mobs -->
+      <h3>Elite Mobs</h3>
       <dl class="divide-y divide-gray-100">
         <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
           <dt class="text-sm font-bold leading-6 text-gray-900">Huidige Rank</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.em_guild_rank_name} ({playerData?.em_guild_rank_number})</dd>
@@ -80,8 +74,11 @@ playerData.towny = await townyRes.json();
           <dt class="text-sm font-bold leading-6 text-gray-900">Em Deaths</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.em_player_deaths || "-"}</dd>
         </div>
       </dl>
+  </section>
 
+  <section class="card bg-slate-400/90 rounded-md p-4 variant-ghost w-full card-hover m-4 relative">
       <!-- Towny -->
+      <h3>Towny</h3>
       <dl class="divide-y divide-gray-100">
         <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
           <dt class="text-sm font-bold leading-6 text-gray-900">Titel</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.towny?.title || "-"}</dd>
@@ -97,7 +94,8 @@ playerData.towny = await townyRes.json();
           <dt class="text-sm font-bold leading-6 text-gray-900">Vrienden</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.towny?.friends }</dd>
         </div>
       </dl>
-    </span>
+
+  </section>
   </div>
 
 }

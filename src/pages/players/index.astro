@@ -1,6 +1,6 @@
 ---
 import Base from "@layouts/Base.astro";
-import PlayerCard from "@layouts/components/PlayerCard.astro";
+import PlayerHead from "@layouts/components/PlayerHead.astro";
 
 // import { getSinglePage } from "@lib/contentParser.astro";
 // import { sortByDate } from "@lib/utils/sortFunctions";
@@ -11,12 +11,13 @@ let playerList = data.residents.slice(1,-1).split(', ')
 
 <Base>
 
-Players {playerList.length}
+<div class="container">
+<h2>Players {playerList.length}</h2>
+</div>
 
-
-<div class="grid landscape:2xl:grid-cols-3 landscape:md:grid-cols-2 gap-2">
+<div class="bg-blue-100/50 grid portrait:md:grid-cols-2 portrait:grid-cols-1 landscape:lg:grid-cols-4 landscape:2xl:grid-cols-5 landscape:md:grid-cols-3 gap-0">
   {playerList.map(player => (
-    <PlayerCard playerName={player} />
+    <PlayerHead playerName={player} />
   ))}
 </div>
 
