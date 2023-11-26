@@ -9,13 +9,15 @@
   export let panorama = "/skinview3d/panorama.png"
   export let animation = "idle"
   export let cape = "/skinview3d/migrator_cape.png"
+  export let width = 1920
+  export let height = 1080
 
 onMount(()=>{
 
 	let skinViewer = new SkinViewer({
 		canvas: document.getElementById("skin_container"),
-		width: 480,
-		height: 480,
+		width: width,
+		height: height,
 		skin: skin,
 	});
 
@@ -84,4 +86,4 @@ onMount(()=>{
 
 </script>
 
-<canvas id="skin_container" class="aspect-square bg-white object-fit"></canvas>
+<canvas id="skin_container" width="100%" height="50%" class="bg-white landscape:aspect-video object-contain"></canvas>
