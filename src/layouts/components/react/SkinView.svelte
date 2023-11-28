@@ -1,6 +1,6 @@
 <script>
   import { SkinViewer, WalkingAnimation, FlyingAnimation, IdleAnimation, RunningAnimation } from "skinview3d";
-  import { onMount } from "svelte";
+  import { onMount, tick } from "svelte";
 
 
   export let skin="/skinview3d/black_rock.png"
@@ -13,11 +13,11 @@
   export let height = 1080
 
 onMount(()=>{
-
+  let canvas = document.getElementById("skin_container")
 	let skinViewer = new SkinViewer({
-		canvas: document.getElementById("skin_container"),
-		width: width,
-		height: height,
+		canvas: canvas,
+		width: window.innerWidth,
+		height: window.innerHeight,
 		skin: skin,
 	});
 
@@ -86,4 +86,4 @@ onMount(()=>{
 
 </script>
 
-<canvas id="skin_container" width="100%" height="50%" class="bg-white landscape:aspect-video object-contain"></canvas>
+<canvas id="skin_container" width="100%" height="100%" class="bg-blue-200/50 object-contain"></canvas>

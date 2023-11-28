@@ -1,6 +1,7 @@
 ---
 import Logo from "@components/Logo.astro";
 import menu from "@config/menu.json";
+import { Image } from "astro:assets";
 import { IoSearch } from "react-icons/io5/index.js";
 
 export interface ChildNavigationLink {
@@ -15,13 +16,14 @@ export interface NavigationLink {
   children?: ChildNavigationLink[];
 }
 
+const { pageClass = "" } = Astro.props
 const { main }: { main: NavigationLink[] } = menu;
 ---
 
-<header class="header pt-6">
+<header class={"header w-screen backdrop-blur-sm bg-white/30 backdrop-brightness-125 z-50" + pageClass}>
   <nav class="navbar container">
     <!-- logo -->
-    <div class="order-0">
+    <div class="order-0 flex items-center">
       <Logo />
     </div>
     <!-- navbar toggler -->

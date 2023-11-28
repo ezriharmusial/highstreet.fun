@@ -1,7 +1,9 @@
 ---
 import { Image } from "astro:assets";
+import PlayerHead from "./PlayerHead.astro";
+import Logo from "./Logo.astro";
 
-const { playerName } = Astro.props
+let { playerName = "Notch" } = Astro.props
 
 let userRes = await fetch(`https://api.highstreet.fun/users/${playerName}`)
 let userData = await userRes.json();
@@ -12,90 +14,122 @@ let playerData = await playerRes.json();
 let townyRes = await fetch(`https://towny.highstreet.fun/resident/${playerName}`)
 playerData.towny = await townyRes.json();
 ---
-{playerData &&
-  <div class="flex portrait:flex-col justify-center mx-auto">
-    <section class="card bg-slate-400/90 rounded-md p-4 variant-ghost w-full card-hover m-4 relative">
-      <h3>Player</h3>
-      <dl class="divide-y divide-gray-100">
-        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-          <dt class="text-sm font-bold leading-6 text-gray-900">Spelersgroep</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{userData?.groups }</dd>
-        </div>
-        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-          <dt class="text-sm font-bold leading-6 text-gray-900">OP</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{userData?.op }</dd>
-        </div>
-        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-          <dt class="text-sm font-bold leading-6 text-gray-900">Online</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{userData?.online }</dd>
-        </div>
-        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-          <dt class="text-sm font-bold leading-6 text-gray-900">Laatst gespot</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{userData?.last_seen }</dd>
-        </div>
-      </dl>
-  </section>
+<div class="md:flex justify-between p-4 w-screen h-screen">
+  <ul class="flex-column space-y space-y-4 text-sm font-medium text-gray-500 dark:text-gray-400 md:me-4 mb-4 md:mb-0 medium text-center pt-16" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
 
-  <section class="card bg-slate-400/90 rounded-md p-4 variant-ghost w-full card-hover m-4 relative">
-      <h3>Live Stats</h3>
-      <dl class="divide-y divide-gray-100">
-        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-          <dt class="text-sm font-bold leading-6 text-gray-900">Balance</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">€ {playerData?.balance_formatted } (€ {playerData?.balance_commas})</dd>
-        </div>
-        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-          <dt class="text-sm font-bold leading-6 text-gray-900">Health</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{Math.round(playerData?.health)}/{Math.round(playerData?.max_health)}</dd>
-        </div>
-        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-          <dt class="text-sm font-bold leading-6 text-gray-900">Exp</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.xp || "-"} {playerData?.xp_to_level}(Total: {playerData?.total_xp})</dd>
-        </div>
-        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-          <dt class="text-sm font-bold leading-6 text-gray-900">Online</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.online }</dd>
-        </div>
-        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-          <dt class="text-sm font-bold leading-6 text-gray-900">Laatst gespot</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.last_seen }</dd>
-        </div>
-      </dl>
+    <li class="fixed top-4 left-4">
+      <a href="/" class="inline-flex items-center px-4 py-3 ">
+        <Logo />
+      </a>
+    </li>
+    <li>
+      <a href="/players" class="inline-flex items-center px-4 py-3 text-black backdrop-blur-sm rounded-lg bg-white/40 w-full">
+        <span class="w-4 h-4 me-2">
+          &laquo;
+        </span>
+        Players
+      </a>
+    </li>
+    <li>
+      <button class="inline-flex items-center px-4 py-3 text-white bg-primary rounded-lg w-full dark:bg-primary" id="vanilla-tab" data-tabs-target="#vanilla" type="button" role="tab" aria-controls="vanilla" aria-selected="false">
+        <svg class="w-4 h-4 me-2 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z"/>
+        </svg>
+        Vanilla
+      </button>
+    </li>
+    <li>
+      <button class="inline-flex items-center px-4 py-3 rounded-lg hover:text-gray-900 bg-slate-300/80  hover:bg-gray-100 w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white" id="towny-tab" data-tabs-target="#towny" type="button" role="tab" aria-controls="towny" aria-selected="false">
+        <Image src="/skinview3d/BellRing.gif" width="20" height="20" alt="Villagers Bell"/>
+        Towny
+      </button>
+    </li>
+    <li>
+      <button class="inline-flex items-center px-4 py-3 rounded-lg hover:text-gray-900 bg-slate-300/80  hover:bg-gray-100 w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white" id="elite-mobs-tab" data-tabs-target="#elite-mobs" type="button" role="tab" aria-controls="elite-mobs" aria-selected="false">
+        <Image src="https://minecraft-theme.netlify.app/imgs/items/wooden-armorstand.png" width="20" height="20" alt="Villagers Bell"/>
+        Elite Mobs
+      </button>
+    </li>
+    </ul>
 
-  </section>
-
-  <section class="card bg-slate-400/80 rounded-md p-4 variant-ghost w-full card-hover m-4 relative">
-    <!-- Elite Mobs -->
-      <h3>Elite Mobs</h3>
-      <dl class="divide-y divide-gray-100">
-        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-          <dt class="text-sm font-bold leading-6 text-gray-900">Huidige Rank</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.em_guild_rank_name} ({playerData?.em_guild_rank_number})</dd>
-          <dt class="text-sm font-bold leading-6 text-gray-900">Max Rank</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.em_guild_rank_name_max} ({playerData?.em_guild_rank_number_max})</dd>
-          <dt class="text-sm font-bold leading-6 text-gray-900">Prestige Rank</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">({playerData?.em_guild_rank_number_prestige})</dd>
-        </div>
-        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-          <dt class="text-sm font-bold leading-6 text-gray-900">EM Coins</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.em_money || "-"}</dd>
-        </div>
-        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-          <dt class="text-sm font-bold leading-6 text-gray-900">EM Kills</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.em_player_kills || "-"}</dd>
-        </div>
-
-        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-          <dt class="text-sm font-bold leading-6 text-gray-900">Em Deaths</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.em_player_deaths || "-"}</dd>
-        </div>
-      </dl>
-  </section>
-
-  <section class="card bg-slate-400/90 rounded-md p-4 variant-ghost w-full card-hover m-4 relative">
-      <!-- Towny -->
-      <h3>Towny</h3>
-      <dl class="divide-y divide-gray-100">
-        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-          <dt class="text-sm font-bold leading-6 text-gray-900">Titel</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.towny?.title || "-"}</dd>
-        </div>
-        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-          <dt class="text-sm font-bold leading-6 text-gray-900">Dorp</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.towny?.town || "-"}</dd>
-        </div>
-        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-          <dt class="text-sm font-bold leading-6 text-gray-900">Natie</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.towny?.nation || "-"}</dd>
-        </div>
+    <div id="default-tab-content" class="w-1/3 max-w-1/3">
+      <div class="p-6 bg-slate-300/80 text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800 rounded-lg w-full h-full overflow-y-auto mb-4" id="vanilla" role="tabpanel" aria-labelledby="vanilla-tab">
+        <header class="card-header flex justify-start items-center gap-1">
+          <PlayerHead playerName={playerName} width="24" height="24" />
+        </header>
+        <dl class="divide-y divide-gray-100">
+          <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="text-sm font-bold leading-6 text-gray-900">Spelersgroep</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{userData?.groups }</dd>
+          </div>
+          <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="text-sm font-bold leading-6 text-gray-900">OP</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{userData?.op }</dd>
+          </div>
+          <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="text-sm font-bold leading-6 text-gray-900">Online</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{userData?.online }</dd>
+          </div>
+          <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="text-sm font-bold leading-6 text-gray-900">Laatst gespot</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{userData?.last_seen }</dd>
+          </div>
 
         <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-          <dt class="text-sm font-bold leading-6 text-gray-900">Vrienden</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.towny?.friends }</dd>
+            <dt class="text-sm font-bold leading-6 text-gray-900">Health</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{Math.round(playerData?.health)}/{Math.round(playerData?.max_health)}</dd>
+          </div>
+          <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="text-sm font-bold leading-6 text-gray-900">Exp</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.xp || "-"} {playerData?.xp_to_level}(Total: {playerData?.total_xp})</dd>
+          </div>
+          <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="text-sm font-bold leading-6 text-gray-900">Balance</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">€ {playerData?.balance_formatted } (€ {playerData?.balance_commas})</dd>
+          </div>
         </div>
-      </dl>
 
-  </section>
+      </div>
+      <div class="p-6 bg-slate-300/80  text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800 rounded-lg w-full h-full overflow-y-auto mb-4" id="elite-mobs" role="tabpanel" aria-labelledby="elite-mobs-tab">
+
+        <!-- Elite Mobs -->
+
+        <header class="card-header flex justify-start items-center gap-1 ">
+          <Image src="https://minecraft-theme.netlify.app/imgs/items/wooden-armorstand.png" width="36" height="36" alt="Villagers Bell"/>
+          <h3>Elite Mobs</h3>
+        </header>
+        <dl class="divide-y divide-gray-100">
+          <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="text-sm font-bold leading-6 text-gray-900">Huidige Rank</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.em_guild_rank_name} ({playerData?.em_guild_rank_number})</dd>
+            <dt class="text-sm font-bold leading-6 text-gray-900">Max Rank</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.em_guild_rank_name_max} ({playerData?.em_guild_rank_number_max})</dd>
+            <dt class="text-sm font-bold leading-6 text-gray-900">Prestige Rank</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">({playerData?.em_guild_rank_number_prestige})</dd>
+          </div>
+          <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="text-sm font-bold leading-6 text-gray-900">EM Coins</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.em_money || "-"}</dd>
+          </div>
+          <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="text-sm font-bold leading-6 text-gray-900">EM Kills</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.em_player_kills || "-"}</dd>
+          </div>
+
+          <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="text-sm font-bold leading-6 text-gray-900">Em Deaths</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.em_player_deaths || "-"}</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="p-6 bg-slate-300/80  text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800 rounded-lg w-full h-full overflow-y-auto mb-4" id="towny" role="tabpanel" aria-labelledby="towny-tab">
+        <!-- Towny -->
+        <header class="card-header flex justify-start items-center gap-1 ">
+          <Image src="/skinview3d/BellRing.gif" width="36" height="36" alt="Villagers Bell"/>
+          <h3>Towny</h3>
+        </header>
+        <dl class="divide-y divide-gray-100">
+          <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="text-sm font-bold leading-6 text-gray-900">Titel</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.towny?.title || "-"}</dd>
+          </div>
+          <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="text-sm font-bold leading-6 text-gray-900">Dorp</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.towny?.town || "-"}</dd>
+          </div>
+          <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="text-sm font-bold leading-6 text-gray-900">Natie</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.towny?.nation || "-"}</dd>
+          </div>
+          <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="text-sm font-bold leading-6 text-gray-900">Vrienden</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.towny?.friends }</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
   </div>
-
-}

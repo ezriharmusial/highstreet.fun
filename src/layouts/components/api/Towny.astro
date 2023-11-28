@@ -1,5 +1,5 @@
 ---
-import PlayerCard from "../PlayerCard.astro"
+import PlayerHead from "../PlayerHead.astro"
 import Nation from "./Nation.astro"
 import Town from "./Town.astro"
 
@@ -27,10 +27,11 @@ let residents = residentsResponse.residents.slice(1, -1).split(', ')
     <Town townName={town} />
   ))}
   <h2>Spelers {residents.length}</h2>
-  <section class="grid landscape:2xl:grid-cols-3 landscape:md:grid-cols-2"></section>
+  <section class="grid landscape:2xl:grid-cols-3 landscape:md:grid-cols-2">
   {residents.map(resident => (
-    <PlayerCard playerName={resident} />
+    <PlayerHead playerName={resident} />
   ))}
+  </section>
 </main>
 
 <style>

@@ -8,6 +8,7 @@ import ServerStatus from "@layouts/components/api/ServerStatus.svelte";
 
 import { getSinglePage } from "@lib/contentParser.astro";
 import { sortByDate } from "@lib/utils/sortFunctions";
+import { Image } from "astro:assets";
 
 const posts = await getSinglePage("posts");
 const sortedPosts = sortByDate(posts);
@@ -26,7 +27,7 @@ const currentPosts = sortedPosts.slice(0, config.settings.pagination);
     </section>
     <aside class="mt-24">
       <div class="bg-green-300 rounded-md mb-8 p-4 overflow-hidden">
-      <h3>Server Status</h3>
+      <h3><Image src="https://minecraft-theme.netlify.app/imgs/items/compass-down.png" width="36" height="36" alt="server compass"/> Server Status</h3>
         <ServerStatus client:only="svelte"/>
       </div>
       <iframe src="https://discord.com/widget?id=1114962379843829840&theme=dark" class="rounded-lg" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>

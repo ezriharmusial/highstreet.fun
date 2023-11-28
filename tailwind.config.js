@@ -24,7 +24,10 @@ if (theme.fonts.font_family.secondary) {
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{astro,html,js,jsx,md,svelte,ts,tsx,vue}"],
+  content: [
+    "./src/**/*.{astro,html,js,jsx,md,svelte,ts,tsx,vue}",
+		"./node_modules/flowbite/**/*.js"
+  ],
   theme: {
     screens: {
       sm: "540px",
@@ -80,5 +83,6 @@ module.exports = {
         5: "3.5rem",
       },
     }),
+    require('flowbite/plugin')
   ],
 };

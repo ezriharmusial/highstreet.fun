@@ -1,14 +1,15 @@
 ---
-import Base from "@layouts/Base.astro";
+import CharacterScreen from "@layouts/CharacterScreen.astro";
+import Logo from "@layouts/components/Logo.astro";
 import PlayerCard from "@layouts/components/PlayerCard.astro";
 import SkinView from "@layouts/components/react/SkinView.svelte";
 
 const { slug } = Astro.params;
 
-let apiRes = await fetch(`https://api.highstreet.fun/users/${slug}`)
-let apiPlayer = await apiRes.json();
-let townyRes = await fetch(`https://towny.highstreet.fun/resident/${slug}`)
-let townyPlayer = await townyRes.json();
+// let apiRes = await fetch(`https://api.highstreet.fun/users/${slug}`)
+// let apiPlayer = await apiRes.json();
+// let townyRes = await fetch(`https://towny.highstreet.fun/resident/${slug}`)
+// let townyPlayer = await townyRes.json();
 
 // The getStaticPaths() is required for static Astro sites.
 // If using SSR, you will not need this function.
@@ -26,12 +27,16 @@ export async function getStaticPaths() {
 
 
 ---
+<CharacterScreen>
 
-<Base>
-<div class="flex justify-center aspect-video landscape:w:screen overflow-hidden">
-  <SkinView skin={"https://mc-heads.net/skin/" + slug} nameTag={slug} client:only="svelte" />
-</div>
-<div class="flex -mt-48">
-<PlayerCard playerName={slug} />
-</div>
-</Base>
+  <main class="h-screen w-screen overflow-hidden">
+    <header class="absolute left-4 top-4"></header>
+    <div class="">
+      <SkinView skin={"https://mc-heads.net/skin/" + slug} nameTag={slug} client:only="svelte" />
+    </div>
+
+    <footer class="fixed top-0 left-0 w-screen h-screen z-50">
+      <PlayerCard playerName={slug} />
+    </footer>
+  </main>
+  </CharacterScreen>

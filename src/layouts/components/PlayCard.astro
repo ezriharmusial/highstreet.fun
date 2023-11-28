@@ -1,7 +1,8 @@
 ---
+import dateFormat from "@lib/utils/dateFormat";
 import { Image } from "astro:assets";
 
-const { playerName } = Astro.props
+let { playerName = "Notch" } = Astro.props
 
 let playerRes = await fetch(`https://api.highstreet.fun/player/${playerName}`)
 let playerData = await playerRes.json();
@@ -14,10 +15,20 @@ let playerData = await playerRes.json();
     <span class="flex content">
       <dl class="divide-y divide-gray-100">
         <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-          <dt class="text-sm font-bold leading-6 text-gray-100">Laatst gespot</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.last_seen }</dd>
+          <dt class="text-sm font-bold leading-6 text-gray-100">
+            Laatst gespot
+          </dt>
+          <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+            {dateFormat(new Date(playerData?.last_seen))}
+          </dd>
         </div>
         <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-          <dt class="text-sm font-bold leading-6 text-gray-100">Titel</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.towny?.title || "-"}</dd>
+          <dt class="text-sm font-bold leading-6 text-gray-100">
+            Titel
+          </dt>
+          <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+            {playerData?.towny?.title || "-"}
+          </dd>
         </div>
         <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
           <dt class="text-sm font-bold leading-6 text-gray-100">Dorp</dt> <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{playerData?.towny?.town || "-"}</dd>

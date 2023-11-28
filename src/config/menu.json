@@ -1,8 +1,8 @@
 {
   "main": [
     {
-      "name": "Home",
-      "url": "/"
+      "name": "Spelers",
+      "url": "/players"
     },
     {
       "name": "Servers",
@@ -28,22 +28,18 @@
       ]
     },
     {
-      "name": "Spelers",
-      "url": "/players"
-    },
-    {
-      "name": "Over",
-      "url": "/about"
-    },
-    {
-      "name": "Contact",
-      "url": "/contact"
-    },
-    {
       "name": "Paginas",
       "url": "",
       "hasChildren": true,
       "children": [
+        {
+          "name": "Over",
+          "url": "/about"
+        },
+        {
+          "name": "Contact",
+          "url": "/contact"
+        },
         {
           "name": "Staf",
           "url": "/staff"
