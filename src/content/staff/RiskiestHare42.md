@@ -1,5 +1,6 @@
 ---
 title: RiskiestHare42
+active: false
 image: https://mc-heads.net/head/RiskiestHare42.png
 description: Strong as Iron, Worth more than Gold.
 social:

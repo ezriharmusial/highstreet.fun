@@ -1,5 +1,6 @@
 ---
 title: Duck King
+active: false
 image: https://mc-heads.net/head/ladenberry84101.png
 description: A Humble King with Great Potentials
 social:

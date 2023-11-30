@@ -20,6 +20,7 @@ const postsCollection = defineCollection({
 const staffCollection = defineCollection({
   schema: z.object({
     id: z.string().optional(),
+    active: z.boolean().optional(),
     title: z.string(),
     meta_title: z.string().optional(),
     image: z.string().optional(),

@@ -1,5 +1,6 @@
 ---
 title: Ezzy Harmless
+active: true
 image:  https://mc-heads.net/head/EzzyHarmless777.png
 description: MineCraft Server Nerd
 social:

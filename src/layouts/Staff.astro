@@ -7,7 +7,7 @@ const { staff } = Astro.props;
 
 <div class="row justify-center">
   {
-    staff.map((author: any) => (
+    staff.filter((author) => author.data.active ).map((author: any) => (
       <div class="col-12 mb-8 sm:col-6 md:col-4">
         {author.data.image && (
           <div class="mb-4">
