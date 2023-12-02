@@ -1,7 +1,7 @@
 ---
 title: Borrelnoot
 active: false
-image:  https://mc-heads.net/head/00000000-0000-0000-0009-00000728926f
+image:  https://api.creepernation.net/head/.eddy01_nl
 description: Just leave him be, he will find you.
 social:
   facebook: https://www.facebook.com/

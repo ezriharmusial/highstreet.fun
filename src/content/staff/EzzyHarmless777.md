@@ -1,7 +1,7 @@
 ---
 title: Ezzy Harmless
 active: true
-image:  https://mc-heads.net/head/EzzyHarmless777.png
+image:  https://api.creepernation.net/head/EzzyHarmless777
 description: MineCraft Server Nerd
 social:
   facebook: https://www.facebook.com/ezriharmusial

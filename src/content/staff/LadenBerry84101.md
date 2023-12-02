@@ -1,7 +1,7 @@
 ---
 title: Duck King
 active: false
-image: https://mc-heads.net/head/ladenberry84101.png
+image: https://api.creepernation.net/head/ladenberry84101
 description: A Humble King with Great Potentials
 social:
   facebook: https://www.facebook.com/

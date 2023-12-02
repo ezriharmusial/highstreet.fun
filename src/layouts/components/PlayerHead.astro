@@ -8,22 +8,37 @@ let userData = await userRes.json();
 
 ---
 {userData &&
-
-    <figure class="flex landscape:flex-col portrait:flex-row-reverse justify-center items-center">
-        <figcaption class="p-1 md:px-4 md:py-2 bg-black/60 text-white font-bold rounded-md mx-auto flex items-center">
-          <div class={"mr-2 " + userData?.groups }></div>
-          {playerName}
-        </figcaption>
+<div class="bg-orange-300 relative p-4 pt-12">
+        <div class="p-1 md:px-2 py-2 bg-black/60 text-white font-bold rounded-md text-center w-full">
+          <p class={"mr-2 " + userData?.groups }></p>
+          {playerName.charAt( 0 ) === '.' ?
+           <div class="flex items-center justify-center">
+          <p>{playerName.slice( 1 )}
+            </p>
+            <Image
+              class="group-hover:scale-[1.03]  ml-2 h-5 w-5 aspect-square transition duration-300"
+              src={"https://static.planetminecraft.com/files/image/minecraft/texture-pack/2022/688/15763358-unnamed_l.webp"}
+              alt={"Bedrock Player"}
+              width={24}
+              height={24}
+              />
+            </div>
+          :
+             <p>{playerName}</p>
+          }
+        </div>
+    <figure class="flex flex-col justify-center items-center">
         <Image
-        class="group-hover:scale-[1.03] aspect-square transition duration-300 w-full"
-        src={"https://mc-heads.net/head/" + playerName}
-        alt={playerName}
-        width={width}
-        height={height}
-        transition:name={"image" + playerName}
-        />
+          class="group-hover:scale-[1.03] aspect-square transition duration-300 w-full"
+          src={"https://api.creepernation.net/head/" + playerName}
+          alt={playerName}
+          width={width}
+          height={height}
+          transition:name={"image" + playerName}
+          />
 
       </figure>
+  </div>
 
   <div id={"tooltip-" + playerName} role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
     <dl>
@@ -41,19 +56,23 @@ let userData = await userRes.json();
 .developer {
 	content: "developer";
   height: 1rem;
-  width: 6.25rem;
-	display: block;
+  width: 6.25rem !important;
+	display: inline-block;
 	background: white;
 	background-image: url('/webpromo/developer.png');
+  background-repeat: no-repeat;
 	background-size: contain;
 }
 .default {
 	content: "player";
   height: 1rem;
-  width: 4rem;
+  width: 4.4rem !important;
+  min-width: 4.4rem !important;
+  max-width: 4.4rem !important;
 	display: inline-block;
-	background: orange;
+	background-color: yellow;
 	background-image: url('/webpromo/helper.png');
+  background-repeat: no-repeat;
 	background-size: contain;
 }
 .mod {
@@ -61,7 +80,7 @@ let userData = await userRes.json();
   width: 2.25rem;
   content: ":mod:";
 	display: inline-block;
-	background: orange;
+	background: green;
 	background-image: url('/webpromo/mod.png');
 	background-size: contain;
 }
@@ -70,7 +89,7 @@ let userData = await userRes.json();
   height: 1rem;
   width: 7.75rem;
 	display: inline-block;
-	background: orange;
+	background: red;
 	background-image: url('/webpromo/game-master.png');
 	background-size: contain;
 }

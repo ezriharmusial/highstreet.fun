@@ -38,7 +38,7 @@
 <dt class="text-sm font-bold leading-6 text-gray-900 flex justify-left items-center">
   {position}. <img
   class="group-hover:scale-[1.03] transition duration-300 w-8 mx-2"
-  src={"https://mc-heads.net/head/" + $apiData.playerName}
+  src={"https://api.creepernation.net/head/" + $apiData.playerName}
   alt={$apiData.playerUUID}
   width={48}
   height={48}

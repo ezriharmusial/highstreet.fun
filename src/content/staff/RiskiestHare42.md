@@ -1,7 +1,7 @@
 ---
 title: RiskiestHare42
 active: false
-image: https://mc-heads.net/head/RiskiestHare42.png
+image: https://api.creepernation.net/head/RiskiestHare42
 description: Strong as Iron, Worth more than Gold.
 social:
   facebook: https://www.facebook.com/

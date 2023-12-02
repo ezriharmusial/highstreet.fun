@@ -1,7 +1,7 @@
 ---
 title: Nasir
 active: false
-image:  https://mc-heads.net/head/6c0c13b2-89d3-417e-aed1-d763e17df5cc
+image:  https://api.creepernation.net/head/nasir194
 description: Danger! Stay away from Nasir.
 social:
   facebook: https://www.facebook.com/

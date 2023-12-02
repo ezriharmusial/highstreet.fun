@@ -17,7 +17,7 @@ let playerList = data.residents.slice(1,-1).split(', ')
 
 <div class="bg-blue-100/50 grid portrait:md:grid-cols-2 portrait:grid-cols-1 landscape:lg:grid-cols-4 landscape:2xl:grid-cols-5 landscape:md:grid-cols-3 gap-0">
   {playerList.map(player => (
-    <a data-tooltip-target="tooltip-default" class="landscape:w-[20vw] portrait:md:w-[33vw] portrait:w-full mb-8" href={"/players/" + player} alt={player + "'s Player profile"}>
+    <a data-tooltip-target="tooltip-default" class="w-full" href={"/players/" + player} alt={player + "'s Player profile"}>
         <PlayerHead playerName={player} />
     </a>
   ))}
